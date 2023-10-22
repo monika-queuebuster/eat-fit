@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { breakfastData } from '@/constants'
+import { breakfastData } from '../../constants'
 import { useRouter } from 'next/router'
 import Image from 'next/image';
 import styles from '../../styles/PurchaseOrder.module.css'
