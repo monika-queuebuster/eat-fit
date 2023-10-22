@@ -1,11 +1,11 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import styles from '@/styles/Home.module.css'
-import HomeSwiper from '@/components/HomeSwiper'
+import styles from '../styles/Home.module.css'
+import HomeSwiper from '../components/HomeSwiper'
 import { useState } from 'react'
-import BreakfastMenu from '@/components/BreakfastMenu'
-import LunchMenu from '@/components/LunchMenu'
-import DinnerMenu from '@/components/DinnerMenu'
+import BreakfastMenu from '../components/BreakfastMenu'
+import LunchMenu from '../components/LunchMenu'
+import DinnerMenu from '../components/DinnerMenu'
 
 
 export const Home = () => {
