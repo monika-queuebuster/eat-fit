@@ -1,0 +1,51 @@
+.product_card {
+  cursor: pointer;
+  transition: all 1s;
+}
+
+.product_image {
+  height: 17rem;
+  width: 14rem;
+  position: relative;
+  border-radius: 2rem;
+  transition: all 0.5s;
+  bottom: 0;
+}
+
+.product_card:hover .product_image {
+  bottom: 0.7rem;
+}
+
+.product_image > img {
+  border-radius: 0.2rem;
+}
+
+.price {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.price > p:nth-child(1) {
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: #4c4c4c;
+  letter-spacing: 0.02rem;
+  font-family: "BrandonTextWeb-Regular";
+}
+
+.price > p:nth-child(2) {
+  font-size: 0.85rem;
+  font-family: BrandonTextWeb-Medium, "Helvetica Neue", Helvetica, Roboto, Arial,
+    sans-serif;
+  font-weight: 500;
+}
+
+.price > p {
+  margin-bottom: 0;
+}
+
+.starting_price {
+  color: #a4a4a4;
+  text-decoration: line-through;
+}

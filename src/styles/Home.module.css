@@ -1,0 +1,33 @@
+.home_page {
+    padding: 0 7.2rem;
+}
+
+.page_header {
+    padding: 3rem 0;
+}
+
+.page_heading {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.tabs {
+    display: flex;
+    gap: 2rem;
+}
+
+.tab_element {
+    font-size: 0.9rem;
+    cursor: pointer;
+    color: rgb(160, 160, 160);
+    padding: 1rem;
+}
+
+.active_tab {
+    text-decoration: underline;
+    text-underline-offset: 1rem ;
+    text-decoration-thickness: 4px;
+    color: #000;
+    text-decoration-color: #fc2e71;
+}
