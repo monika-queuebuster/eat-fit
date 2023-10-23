@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="31" height="44" viewBox="0 0 31 44">
+    <g fill="none" fill-rule="evenodd" stroke="#262626">
+        <g stroke-width="2.5">
+            <path d="M30 42H15.79l-5.369-3.91A2.752 2.752 0 0 1 10 36.632v-5.61c0-.913.788-1.655 1.765-1.662l2.445-.016"/>
+            <path d="M14.348 33.258V16.989c0-1.099.92-1.989 2.056-1.989h.082c1.135 0 2.055.89 2.055 1.99v8.618h3.155l4.281-.048c1.741 0 3.153 1.367 3.153 3.052v9.17"/>
+        </g>
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 13l-4 4.62L5.794 22M21 1l4 4.62L21.206 10"/>
+        <path stroke-width="1.5" d="M21 17c4.616 0 6.95-1.333 7-4"/>
+        <path stroke-linecap="square" stroke-width="1.5" d="M4 17h7"/>
+        <path stroke-width="1.5" d="M25 5H7.196C3.066 5 1 7 1 11"/>
+    </g>
+</svg>
