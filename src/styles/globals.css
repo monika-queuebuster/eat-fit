@@ -1,5 +1,97 @@
 * {
-    margin: 0;
-    padding: 0;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+html {
+  font-size: 62.5%;
+}
+body {
+  font-size: 1.6rem !important;
+}
+
+@media only screen and (min-width: 2400px) and (max-width: 2600px) {
+  html {
+    font-size: 110%;
+  }
+}
+
+@media only screen and (min-width: 2200px) and (max-width: 2400px) {
+  html {
+    font-size: 100%;
+  }
+}
+
+@media only screen and (min-width: 2000px) and (max-width: 2200px) {
+  html {
+    font-size: 90%;
+  }
+}
+
+@media only screen and (min-width: 1800px) and (max-width: 2000px) {
+  html {
+    font-size: 80%;
+  }
+}
+
+@media only screen and (min-width: 1600px) and (max-width: 1800px) {
+  html {
+    font-size: 70%;
+  }
+}
+
+@media only screen and (min-width: 1400px) and (max-width: 1600px) {
+  html {
+    font-size: 63%;
+  }
+}
+
+@media only screen and (min-width: 1200px) and (max-width: 1400px) {
+  html {
+    font-size: 54.8%;
+  }
+}
+
+@media only screen and (min-width: 1000px) and (max-width: 1200px) {
+  html {
+    font-size: 45%;
+  }
+}
+
+@media only screen and (min-width: 800px) and (max-width: 1000px) {
+  html {
+    font-size: 36%;
+  }
+}
+
+@media only screen and (min-width: 730px) and (max-width: 800px) {
+  html {
+    font-size: 33%;
+  }
+}
+
+@media only screen and (min-width: 630px) and (max-width: 730px) {
+  html {
+    font-size: 28%;
+  }
+}
+
+@media only screen and (min-width: 380px) and (max-width: 540px) {
+  html {
+    font-size: 46%;
+  }
+}
+
+@media only screen and (min-width: 300px) and (max-width: 350px) {
+  html {
+    font-size: 37%;
+  }
+}
+
+@media only screen and (min-width: 350px) and (max-width: 380px) {
+  html {
+    font-size: 40%;
+  }
 }

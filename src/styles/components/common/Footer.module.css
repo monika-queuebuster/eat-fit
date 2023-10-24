@@ -1,39 +1,40 @@
 .footer_container {
-  margin-top: 2rem;
-  padding: 3rem 7.2rem;
+  margin-top: 5rem;
+  padding: 6rem 11.6rem;
   background-color: rgb(5, 36, 101);
 }
 
 .footer_logo_container {
-  height: 8rem;
-  width: 8rem;
+  height: 12rem;
+  width: 12rem;
   position: relative;
 }
 
 .footer_desc {
-  font-size: 0.8rem;
+  font-size: 1.4rem;
   color: #fff;
   width: 50%;
-  line-height: 1.5rem;
+  line-height: 2.3rem;
+  margin: 2rem 0;
 }
 
 .sitemap {
-  font-size: 2.3rem;
+  font-size: 3.3rem;
   font-variant-caps: all-petite-caps;
   color: rgb(255, 49, 109);
   border-bottom: 1px solid rgb(52, 51, 51);
 }
 
 .footer_link_container {
-  margin-top: 1.5rem;
+  margin-top: 2.5rem;
   display: flex;
   justify-content: space-between;
 }
 
 .link_heading {
-  font-size: 1.1rem;
+  font-size: 2rem;
   color: #fff;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
   text-decoration: underline;
   text-underline-offset: 0.5rem;
   text-decoration-color: rgb(52, 51, 51);
@@ -42,13 +43,13 @@
 .link_container {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 1rem;
 }
 
 .link_container > a {
   width: fit-content;
   color: #fff;
-  font-size: 0.9rem;
+  font-size: 1.3rem;
   font-weight: 300;
   text-decoration: none;
   background: linear-gradient(currentColor 0 0) bottom / var(--d, 0) 2px
@@ -58,4 +59,24 @@
 
 .link_container > a:hover {
   --d: 100%;
+}
+
+@media screen and (max-width: 540px) {
+  .footer_container {
+    padding: 3rem;
+  }
+
+  .footer_desc {
+    width: 100%;
+  }
+
+  .footer_link_container {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
+  .footer_link_container > div {
+    margin-bottom: 4rem;
+    width: 33%;
+  }
 }

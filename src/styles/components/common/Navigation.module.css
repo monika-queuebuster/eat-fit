@@ -1,8 +1,7 @@
 .navigation_bar {
   background-color: #fff;
-  padding: 0.6rem 1.5rem;
+  padding: 0.6rem 2.5rem;
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.15);
-
 }
 
 .nav {
@@ -13,41 +12,62 @@
 }
 
 .nav_logo {
-  height: 3rem;
-  width: 8.3rem;
+  height: 5rem;
+  width: 13.3rem;
   position: relative;
 }
 
-.nav_mid_links,
+.nav_mid_links {
+  display: flex;
+  gap: 7rem;
+  align-items: center;
+}
+
 .nav_end_links {
   display: flex;
-  gap: 2rem;
+  gap: 2.5rem;
   align-items: center;
 }
 
 .whatsapp_icon {
-  height: 2rem;
-  width: 2rem;
+  height: 3rem;
+  width: 5rem;
   position: relative;
 }
 
 .login_container {
   display: flex;
   gap: 1rem;
+  cursor: pointer;
 }
 
 .user_icon {
-  height: 1rem;
-  width: 1rem;
+  height: 1.7rem;
+  width: 1.7rem;
   position: relative;
 }
 
 .link_ele > a {
-  font-size: 1rem;
+  font-size: 1.5rem;
   text-decoration: none;
   color: #000;
 }
 
 .active_link > a {
   color: #fc2e71;
+}
+
+
+@media screen and (max-width: 540px) {
+  .nav_mid_links {
+    gap: 1.5rem;
+  }
+
+  .nav_end_links {
+    gap: 0.3rem;
+  }
+
+  .link_ele > a {
+    font-size: 1.3rem;
+  }
 }

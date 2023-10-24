@@ -1,5 +1,11 @@
 .banner_img {
-    height: 15.5rem;
+    height: 25rem;
     width: 100%;
     position: relative;
+}
+
+@media screen and (max-width: 540px) {
+    .banner_img {
+        height: 16rem;
+    }
 }

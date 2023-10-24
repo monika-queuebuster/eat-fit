@@ -56,10 +56,10 @@ const UpcomingMeals = ({ includeWeekends }) => {
                 <p className={styles.calorie_count}>647 - Calories</p>
 
                 <div className={styles.nutrients_measure}>
-                    <div style={{ width: `${protienPer}%`, backgroundColor: 'rgb(79, 198, 255)', height: '0.5rem', display: 'inline-block' }}></div>
-                    <div style={{ width: `${fatPer}%`, backgroundColor: 'rgb(255, 165, 34)', height: '0.5rem', display: 'inline-block' }}></div>
-                    <div style={{ width: `${carbsPer}%`, backgroundColor: 'rgb(244, 109, 160)', height: '0.5rem', display: 'inline-block' }}></div>
-                    <div style={{ width: `${fibrePer}%`, backgroundColor: 'rgb(145, 108, 174)', height: '0.5rem', display: 'inline-block' }}></div>
+                    <div style={{ width: `${protienPer}%`, backgroundColor: 'rgb(79, 198, 255)', height: '1rem', display: 'inline-block', borderTopLeftRadius: '4px', borderBottomLeftRadius: '4px' }}></div>
+                    <div style={{ width: `${fatPer}%`, backgroundColor: 'rgb(255, 165, 34)', height: '1rem', display: 'inline-block' }}></div>
+                    <div style={{ width: `${carbsPer}%`, backgroundColor: 'rgb(244, 109, 160)', height: '1rem', display: 'inline-block' }}></div>
+                    <div style={{ width: `${fibrePer}%`, backgroundColor: 'rgb(145, 108, 174)', height: '1rem', display: 'inline-block', borderTopRightRadius: '4px', borderBottomRightRadius: '4px' }}></div>
                 </div>
                 <div className={styles.nutrient_amount_detail}>
                     <div className={styles.single_nutrient}>
