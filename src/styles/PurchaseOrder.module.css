@@ -1,18 +1,24 @@
 .food_img {
-  height: 29rem;
-  width: 39.5rem;
+  height: 47rem;
+  width: 60rem;
   position: relative;
   margin-bottom: 1rem;
 }
 
 .purchase_page {
-  padding: 5rem 7.2rem 0 7.2rem;
+  padding: 8rem 11.6rem 0 11.6rem;
   display: flex;
-  gap: 6rem;
+  gap: 12rem;
+}
+
+.subscription_tab {
+  display: flex;
+  gap: 3rem;
+  margin: 3rem 0;
 }
 
 .tab_element {
-  font-size: 1rem;
+  font-size: 1.5rem;
   cursor: pointer;
   color: rgb(160, 160, 160);
   padding: 1rem;
@@ -28,29 +34,29 @@
 
 .meal_heading {
   font-weight: 400;
-  font-size: 2rem;
+  font-size: 3rem;
 }
 
 .meal_para {
-  font-size: 0.9rem;
+  font-size: 1.4rem;
   font-weight: 200;
-  line-height: 1.8rem;
+  line-height: 2.8rem;
   margin-top: 1rem;
   color: #4f4e4e;
 }
 
 .data_container {
   display: flex;
-  margin: 1rem 0;
+  margin: 2rem 0;
   position: relative;
   align-items: center;
 }
 
 .variable_box {
   box-shadow: 3px 1px 8px 1px rgb(231, 231, 231);
-  padding: 1.2rem 2rem 1.2rem 2.5rem;
+  padding: 3rem 2.5rem 3rem 3rem;
   border-radius: 0.3rem;
-  margin-left: 8rem;
+  margin-left: 12rem;
 }
 
 .selectable_box {
@@ -61,7 +67,7 @@
 
 .type_container {
   padding: 0.5rem 0;
-  width: 8rem;
+  width: 12rem;
   text-align: center;
   cursor: pointer;
 }
@@ -125,14 +131,14 @@ input:checked + .slider:before {
 }
 
 .checkbox_label {
-  font-size: 0.8rem;
+  font-size: 1.3rem;
   margin-left: 0.5rem;
   position: relative;
-  top: 0.2rem;
+  top: 0.3rem;
 }
 
 .variable_data {
-  padding: 2rem;
+  padding: 3rem;
   border-radius: 0.3rem;
   background-color: rgb(247, 216, 234);
   /* position: absolute;   */
@@ -171,9 +177,15 @@ input:checked + .slider:before {
   margin-bottom: 1rem;
 }
 
+.offers_applied_text {
+  margin-top: 1.8rem;
+  margin-bottom: 0.8rem;
+  font-size: 2rem;
+}
+
 .container_footer {
   font-weight: 200;
-  line-height: 1.6rem;
+  line-height: 2.3rem;
   color: #6b6b6b;
 }
 
@@ -198,7 +210,6 @@ input:checked + .slider:before {
   height: 90vh;
 }
 
-
 /* upcoming component css */
 .upcoming_container {
   margin: 1.8rem 0;
@@ -212,8 +223,8 @@ input:checked + .slider:before {
 }
 
 .meal_img {
-  height: 8rem;
-  width: 8rem;
+  height: 12rem;
+  width: 12rem;
   position: relative;
   cursor: pointer;
 }
@@ -223,8 +234,10 @@ input:checked + .slider:before {
 }
 
 .note {
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
   color: #8b8b8b;
+  font-size: 1.5rem;
+  font-weight: 600;
 }
 
 .day_name {
@@ -240,77 +253,77 @@ input:checked + .slider:before {
 }
 
 .meal_desc {
-  margin-top: 1.6rem;
+  margin-top: 3.6rem;
   background-color: rgba(172, 172, 172, 0.09);
-  padding: 1rem 0.8rem;
+  padding: 2rem 1.8rem;
   border-radius: 8px;
 }
 
 .nutrients_measure {
-  width: 27rem;
+  width: 42rem;
   height: 2rem;
 }
 
 .discount_image {
-  height: 1.5rem;
-  width: 1.5rem;
+  height: 2.2rem;
+  width: 2.2rem;
   position: relative;
 }
 
 .dot {
-  height: 0.7rem;
-  width: 0.7rem;
+  height: 1rem;
+  width: 1rem;
   border-radius: 50%;
   margin-right: 0.7rem;
 }
 
 .nutrient_name {
-  font-size: 0.9rem;
+  font-size: 1.4rem;
   font-weight: 300;
   width: 6rem;
 }
 
 .nutrient_amount {
-  font-size: 0.9rem;
+  font-size: 1.4rem;
   font-weight: 600;
 }
 
 .single_nutrient {
   display: flex;
   align-items: center;
-  width: 8rem;
+  width: 20rem;
 }
 
 .nutrient_amount_detail {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  width: 27rem;
+  width: 40rem;
   row-gap: 1rem;
   margin: 1rem 0;
 }
 
 .day_date {
-  font-size: 1.1rem;
+  font-size: 1.6rem;
   font-weight: 200;
   color: #454545;
 }
 
 .food_items {
-  margin: 1.2rem 0;
-  font-size: 1rem;
+  margin: 2rem 0;
+  font-size: 1.6rem;
   font-weight: 600;
 }
 
 .food_desc {
-  font-size: 0.8rem;
+  font-size: 1.4rem;
   font-weight: 300;
-  line-height: 1.5rem;
+  line-height: 2rem;
   margin-bottom: 1px;
 }
 
 .nutrient_heading {
-  margin: 1rem 0;
-  font-size: 1.4rem;
+  margin: 2rem 0;
+  font-size: 2.3rem;
 }
 
 .calorie_count {
@@ -333,9 +346,9 @@ input:checked + .slider:before {
 }
 
 .howitworks_step > p {
-  font-size: 1rem;
+  font-size: 1.4rem;
   font-weight: 300;
-  line-height: 1.5rem;
+  line-height: 2.1rem;
 }
 
 /* why subscribe card */
@@ -349,7 +362,7 @@ input:checked + .slider:before {
 
 .subscribe_card {
   border-radius: 10px;
-  padding: 1.5rem;
+  padding: 3.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -357,13 +370,13 @@ input:checked + .slider:before {
 }
 
 .subscirbe_icons {
-  height: 2rem;
-  width: 2rem;
+  height: 3rem;
+  width: 3rem;
   position: relative;
 }
 
 .subscribe_card > p {
-  font-size: 1rem;
+  font-size: 1.5rem;
   text-align: center;
   margin-top: 0.5rem;
 }
@@ -377,12 +390,50 @@ input:checked + .slider:before {
 }
 
 .button_container > button {
-  padding: 0.8rem 0.5rem;
+  padding: 1.2rem 2.5rem;
   background-image: linear-gradient(rgb(5, 36, 101), rgb(5, 36, 101));
-  font-size: 1rem;
+  font-size: 1.4rem;
   color: #fff;
   border: none;
   outline: none;
   cursor: pointer;
   border-radius: 9px;
+}
+
+@media screen and (max-width: 540px) {
+  .purchase_page {
+    padding: 3rem 3rem 0 3rem;
+    flex-direction: column;
+    gap: 5rem;
+  }
+
+  .left_container,
+  .right_container {
+    width: 100%;
+  }
+
+  .food_img {
+    height: 37rem;
+    width: 48rem;
+  }
+
+  .subscription_tab {
+    gap: 1.5rem;
+    justify-content: center;
+  }
+
+  .image_center_container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .note {
+    text-align: center;
+  }
+
+  .meal_heading,
+  .meal_para,
+  .offers_applied_text {
+    text-align: center;
+  }
 }

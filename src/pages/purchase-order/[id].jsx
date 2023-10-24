@@ -26,8 +26,8 @@ const purchaseDetail = () => {
     return (
         <div className={styles.purchase_page}>
             <div className={styles.left_container}>
-                <div className={styles.food_img}><Image src='/assets/selectedFood.webp' alt='menu item' fill /></div>
-                <div style={{ display: 'flex', gap: '1rem' }}>
+                <div className={styles.image_center_container}><div className={styles.food_img}><Image src='/assets/selectedFood.webp' alt='menu item' fill /></div></div>
+                <div className={styles.subscription_tab}>
                     <div className={`${styles.tab_element} ${activeTab === "Upcoming meals" && styles.active_tab}`} onClick={() => setActiveTab("Upcoming meals")}>Upcoming meals</div>
                     <div className={`${styles.tab_element} ${activeTab === "How it works" && styles.active_tab}`} onClick={() => setActiveTab("How it works")}>How it works</div>
                     <div className={`${styles.tab_element} ${activeTab === "Why subscribe" && styles.active_tab}`} onClick={() => setActiveTab("Why subscribe")}>Why subscribe</div>
@@ -74,7 +74,7 @@ const purchaseDetail = () => {
                     <button className={styles.subscribe_btn}>Subscribe Meal Plan</button>
                     <hr style={{border: '1.2px solid #d8d8d8', width: '97%', textAlign: 'center'}} />
                 </div>
-                <h2 style={{marginTop: '1.8rem', marginBottom: '0.8rem', fontSize: '1.3rem'}}>Offers applied</h2>
+                <h2 className={styles.offers_applied_text}>Offers applied</h2>
                 <div style={{display: 'flex', gap: '0.7rem', alignItems: 'flex-start'}}>
                     <div className={styles.discount_image}><Image src='/assets/discount.svg' alt='discount' fill /></div>
                     <p className={styles.container_footer}>Don't Miss Out: Enjoy a Massive 50% Discount on Your Meal Plan Subscription</p>
