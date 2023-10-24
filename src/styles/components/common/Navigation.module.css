@@ -57,6 +57,28 @@
   color: #fc2e71;
 }
 
+.desktop_nav {
+  display: flex;
+}
+
+.mobile_nav {
+  display: none;
+}
+
+.mobile_bottom_nav {
+  display: none;
+}
+
+.nav_icon_container {
+  height: 3rem;
+  width: 3rem;
+  position: relative;
+  margin-bottom: 0.5rem;
+}
+
+.active_element {
+  color: #fc2e71;
+}
 
 @media screen and (max-width: 540px) {
   .nav_mid_links {
@@ -69,5 +91,24 @@
 
   .link_ele > a {
     font-size: 1.3rem;
+  }
+
+  .mobile_nav {
+    display: block;
+  }
+
+  .desktop_nav {
+    display: none;
+  }
+
+  .mobile_bottom_nav {
+    position: sticky;
+    bottom: 0;
+    width: 100%;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    padding: 1rem 0;
+    gap: 5rem;
   }
 }

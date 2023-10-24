@@ -9,7 +9,7 @@ const NavigationBar = () => {
 
   return (
     <div className={styles.navigation_bar}>
-      <nav className={styles.nav}>
+      <nav className={`${styles.nav} ${styles.desktop_nav}`}>
         <div className={styles.nav_logo}><Image src='/assets/navigation/eatfit-logo.svg' alt='eat fit' fill /></div>
         <div className={styles.nav_mid_links}>
           <div className={`${styles.link_ele} ${router.asPath === '/' && styles.active_link}`}><Link href="/">Meal Plans</Link></div>
@@ -20,6 +20,10 @@ const NavigationBar = () => {
           <div><Link href='https://wa.me/919606032257'><div className={styles.whatsapp_icon}><Image src='/assets/navigation/whatsapp-icon.svg' alt='whatsapp icon' fill /></div></Link></div>
           <div className={styles.login_container}><div className={styles.user_icon}><Image src='/assets/navigation/user-image.svg' alt='/user-image' fill /></div> Login</div>
         </div>
+      </nav>
+
+      <nav className={`${styles.nav} ${styles.mobile_nav}`}>
+        <div className={styles.nav_logo}><Image src='/assets/navigation/eatfit-logo.svg' alt='eat fit' fill /></div>
       </nav>
     </div>
   )
