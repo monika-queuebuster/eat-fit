@@ -15,6 +15,7 @@
   height: 5rem;
   width: 13.3rem;
   position: relative;
+  cursor: pointer;
 }
 
 .nav_mid_links {
