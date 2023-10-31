@@ -1,0 +1,30 @@
+.show_ans {
+    display: block;
+    margin-top: 1rem;
+}
+
+.hide_ans {
+    display: none;
+}
+
+.faq {
+    padding: 2rem 0;
+    border-bottom: 1px solid grey;
+}
+
+.faq_ques {
+    cursor: pointer;
+}
+
+.selected_ques {
+    color: #ff3278;
+}
+
+.arrow {
+    font-size: 2.5rem;
+}
+
+.rotate_arrow {
+    transform: rotate(180deg);
+    transition: 0.5s;
+}

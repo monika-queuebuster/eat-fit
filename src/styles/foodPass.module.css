@@ -1,0 +1,329 @@
+.section1 {
+  margin: 2rem 0 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.page_heading {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.pink_text {
+  color: #ff3278;
+}
+
+.foodpass_card {
+  padding: 2rem 4rem;
+  margin: 10px;
+  transition: all 100ms ease-in-out 0s;
+  border-radius: 6px;
+  color: rgb(0, 0, 0);
+  background: rgb(255, 255, 255);
+  box-shadow: rgba(217, 217, 217, 0.67) 1px 1px 5px 2px;
+  width: 32rem;
+  flex-shrink: 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ticket_img {
+  height: 13rem;
+  width: 18rem;
+  position: relative;
+}
+
+.card_price {
+  font-family: "Kalam", cursive;
+  font-size: 2.7rem;
+}
+
+.benefits {
+  font-family: "Kalam", cursive;
+  font-size: 2.35rem;
+  margin-top: 1rem;
+}
+
+.card_points {
+  display: flex;
+  gap: 1.2rem;
+  margin: 1.3rem 0;
+}
+
+.bullet_point {
+  height: 1.5rem;
+  width: 1.5rem;
+  position: relative;
+  display: inline-block;
+}
+
+.benefit_point {
+  font-size: 1.5rem;
+}
+
+.foodpass_btn {
+  width: 100%;
+  background-color: #ff3278;
+  padding: 1.6rem 0;
+  font-size: 1.6rem;
+  font-size: 800;
+  color: #fff;
+  border-radius: 0.5rem;
+  border: none;
+}
+
+.arrow_img_container {
+  position: absolute;
+  height: 24rem;
+  width: 22rem;
+  right: 17%;
+  bottom: -2%;
+}
+
+.iframe_container {
+  display: flex;
+  justify-content: center;
+}
+
+.iframe_container > iframe {
+  border: none;
+}
+
+.section3 {
+  margin-top: 6rem;
+  padding: 0 25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.section3 > h2 {
+  font-size: 2rem;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.section3 > p {
+  font-size: 1.4rem;
+  text-align: center;
+  color: rgb(114, 114, 114);
+  font-weight: 300;
+  width: 75%;
+  text-align: center;
+}
+
+.benefits_available {
+  margin: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.benefits_container {
+  width: 28.5%;
+  padding: 2rem;
+}
+
+.benefits_img {
+  height: 9rem;
+  width: 9rem;
+  position: relative;
+}
+
+.benefits_container > h3 {
+  margin: 2rem 0;
+  font-weight: 500;
+  font-size: 1.5rem;
+}
+
+.benefits_container > p {
+  font-size: 1.5rem;
+  font-weight: 300;
+  line-height: 2.5rem;
+  color: #666666;
+}
+
+.section4 {
+  padding: 0 20rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.section4 > h2 {
+  font-size: 2rem;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.section4_ic {
+  display: flex;
+  justify-content: space-between;
+}
+
+.section4_C {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.pass_ticket_img {
+  height: 14rem;
+  width: 14rem;
+  position: relative;
+}
+
+.pass_info {
+  height: 10rem;
+  width: 35rem;
+  position: relative;
+}
+
+.section4_C > h4 {
+  font-size: 1.8rem;
+}
+
+.section4_C > p {
+  text-align: center;
+  margin-top: 2rem;
+  line-height: 2.4rem;
+  font-size: 1.5rem;
+  color: #666666;
+}
+
+.step_count1 {
+  height: 8rem;
+  width: 8rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.step_count2 {
+  height: 6rem;
+  width: 9rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.next_step_line {
+  height: 12rem;
+  width: 16rem;
+  position: relative;
+  top: 4rem;
+}
+
+.section5 {
+  padding: 0 20rem;
+}
+
+.section6 {
+  padding: 5rem 20rem;
+}
+
+.heading_container {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.faq_icon {
+  height: 6rem;
+  width: 6rem;
+  position: relative;
+}
+
+.section5_heading,
+.section6_heading {
+  font-size: 2rem;
+}
+
+.unorderd_list > li::before {
+  content: "\2022";
+  color: #ff3278;
+  font-weight: bold;
+  display: inline-block;
+  margin-left: -1em;
+  width: 1em;
+}
+
+
+/* media query */
+
+@media screen and (max-width: 540px) {
+  .section1 {
+    padding: 1rem 5rem;
+  }
+
+  .page_heading {
+    text-align: center;
+  }
+
+  .arrow_img_container {
+    display: none;
+  }
+
+  .iframe_container {
+    padding: 2rem 10rem;
+  }
+
+  .section3 {
+    padding: 0 5rem;
+  }
+
+  .benefits_available {
+    margin: 0;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .benefits_container {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center ;
+  }
+
+  .benefits_container > p {
+    text-align: center;
+  }
+
+  .section4 {
+    padding: 4rem 5rem;
+  }
+
+  .section4_ic {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .section4_C {
+    width: 80%;
+  }
+
+  .next_step_line {
+    transform: rotate(45deg);
+    height: 10rem;
+    width: 10rem;
+    top: 2rem;
+  }
+
+  .section4_ic > div:nth-child(3) {
+    margin-top: 3rem;
+  }
+
+  .section5 {
+    padding: 2rem 5rem;
+  }
+
+  .section6 {
+    padding: 2rem 5rem;
+  }
+}

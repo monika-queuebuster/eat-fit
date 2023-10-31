@@ -11,9 +11,9 @@ const MobileNav = () => {
                 <div className={styles.nav_icon_container}><Image src='/assets/navigation/mealplan-icon.svg' alt='meal plan icon' fill /></div>
                 <p className={`${router.asPath === '/' && styles.active_element}`}>Meal Plans</p>
             </div>
-            <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+            <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}} onClick={()=>router.push('/food-pass')}>
                 <div className={styles.nav_icon_container}><Image src='/assets/navigation/food-pass.svg' alt='food paas' fill /></div>
-                <p>Food Paas</p>
+                <p className={`${router.asPath === '/food-paas' && styles.active_element}`}>Food Paas</p>
             </div>
             <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
                 <div className={styles.nav_icon_container}><Image src='/assets/navigation/user-mobile.png' alt='user icon' fill /></div>
