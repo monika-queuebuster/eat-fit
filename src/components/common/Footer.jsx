@@ -14,7 +14,7 @@ const Footer = () => {
                 {
                     footerLinks?.map((ele) => {
                         return (
-                            <div>
+                            <div key={ele?.id}>
                                 <h4 className={styles.link_heading}>{ele?.heading}</h4>
                                 <div className={styles.link_container}>
                                     {

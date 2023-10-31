@@ -1,0 +1,89 @@
+.modal_size {
+    height: 50rem;
+    width: 65rem;
+    background-color: #fff;
+    margin: 8rem auto ;
+    border: none;
+    outline: none;
+    box-shadow: rgba(66, 66, 73, 0.2) 0px 7px 29px 0px;
+    padding: 3rem 2rem;
+}
+
+.close_btn {
+    border: none;
+    overflow: none;
+    background-color: #fff;
+    font-size: 3rem;
+    font-family: 'Varela Round', sans-serif;
+    font-weight: 800;
+}
+
+.modal_heading {
+    font-size: 1.8rem;
+}
+
+.header_container {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+}
+
+.icon_container {
+    padding: 0.6rem 1rem 0.6rem 1rem;
+    border: 1px solid grey;
+    border-right: none;
+    border-top-left-radius: 0.3rem;
+    border-bottom-left-radius: 0.3rem;
+}
+
+.searchbar_container {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.search_icon {
+    font-size: 2rem;
+}
+
+.search_box {
+    padding: 0.6rem 0 0.6rem 1rem;
+    border: 1px solid grey;
+    outline: none;
+    border-left: none;
+    width: 55rem;
+    font-size: 1.4rem;
+    border-top-right-radius: 0.3rem;
+    border-bottom-right-radius: 0.3rem;
+}
+
+.city_img {
+    height: 6rem;
+    width: 6rem;
+    position: relative;
+}
+
+.cities_container {
+    padding: 2rem;
+    display: flex;
+    column-gap: 6rem;
+    row-gap: 3rem;
+    flex-wrap: wrap;
+}
+
+.city_name {
+    font-size: 1.4rem;
+    font-family: 'Varela Round', sans-serif;
+    margin-top: 2rem;
+}
+
+@media screen and (max-width: 540px) {
+    .modal_size {
+        height: 60rem;
+        width: 45rem;
+    }
+
+    .cities_container {
+        justify-content: center;
+    }
+}
