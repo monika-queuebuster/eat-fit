@@ -1,0 +1,159 @@
+.dashboard_container {
+    display: flex;
+}
+
+.left_container {
+    width: 25%;
+    box-shadow: -1px 0 15px 0 rgba(0,0,0,.06);
+    height: 100vh;
+}
+
+.name_container {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    padding: 4rem 2rem;
+    border-bottom: 0.5px solid #e0e0e0;
+}
+.image_container {
+    height: 7rem;
+    width: 7rem;
+    position: relative;
+}
+
+.options_container {
+    padding: 2rem 4rem;
+}
+
+.option {
+    display: flex;
+    justify-content: space-between;
+    margin: 3rem 0;
+}
+
+.option > div {
+    height: 2rem;
+    width: 2rem;
+    position: relative;
+}
+
+.right_container {
+    padding: 4rem 8rem;
+    width: 70%;
+    background-color: #f4f4f4;
+}
+
+.image_section {
+    display: flex;
+    justify-content: center;
+    padding: 4rem 0;
+}
+
+.form_row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 3rem;
+}
+
+.form_row > div {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 40%;
+}
+
+.form_input {
+    padding: 0.5rem 0;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid rgb(200, 200, 200);
+    font-size: 1.6rem;
+    font-weight: 600;
+    background-color: transparent;
+}
+
+.form_row > div > label {
+    font-size: 1.4rem;
+    color: rgb(72, 72, 72);
+}
+
+.user_image {
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+.select_user_img {
+    height: 15rem;
+    width: 15rem;
+    border: none;
+    outline: none;
+    position: relative;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.user_image > img {
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.edit_text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    opacity: .98;
+    color: #000;
+    height: 3rem;
+    width: 100%;
+    font-weight: 600;
+}
+
+.gender_icon {
+    font-size: 4rem;
+}
+
+.country_code {
+    display: inline;
+    font-size: 1.6rem;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 0.85rem;
+    text-decoration-color: rgb(200, 200, 200);
+}
+
+.calender_input {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    padding: 1rem 0 0.5rem 0;
+    border-bottom: 1px solid rgb(200, 200, 200);
+    font-size: 1.4rem;
+    font-weight: 600;
+    width: 100%;
+}
+
+@media screen and (max-width: 540px) {
+    .dashboard_container {
+        flex-direction: column;
+    }
+
+    .left_container {
+        width: 100%;
+        height: fit-content;
+    }
+
+    .form_row {
+        flex-direction: column;
+        margin-top: 0;
+    }
+
+    .form_row > div {
+        width: 100%;
+        margin: 1.4rem 0;
+    }
+
+}

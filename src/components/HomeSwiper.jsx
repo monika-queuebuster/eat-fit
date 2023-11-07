@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 const HomeSwiper = () => {
 
-    const bannerImages = ["/assets/mealPlans/slider1.webp"]
+    const bannerImages = ["/assets/mealPlans/byt-banner.jpeg"]
     const [activeSlide, setActiveSlide] = useState(0);
 
     // timestamp for showing next banners
