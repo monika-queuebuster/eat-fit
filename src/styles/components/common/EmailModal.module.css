@@ -1,0 +1,56 @@
+.modal_size {
+  height: 35rem;
+  width: 30rem;
+  background-color: #fff;
+  margin: 20rem auto;
+  border: none;
+  outline: none;
+  box-shadow: rgba(66, 66, 73, 0.2) 0px 7px 29px 0px;
+  padding: 4rem;
+  position: relative;
+  border-radius: 5px;
+}
+
+.close_btn {
+  border: none;
+  overflow: none;
+  background-color: #fff;
+  font-size: 3rem;
+  font-family: "Varela Round", sans-serif;
+  font-weight: 800;
+}
+
+.modal_heading {
+    font-size: 1.8rem;
+}
+
+.input_field {
+    margin-top: 5rem;
+    padding: 1rem 0;
+    font-size: 1.7rem;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid rgb(200, 200, 200);
+    width: 100%;
+}
+
+.verify_button {
+    margin-top: 5rem;
+    padding: 1.5rem 3rem;
+    border-radius: 25px;
+    color: #fff;
+    border: none;
+    outline: none;
+    font-size: 1.5rem;
+}
+
+.not_active {
+    pointer-events: none;
+    background-color: rgb(200, 200, 200);
+}
+
+.active {
+    cursor: pointer;
+    background-image: linear-gradient(101deg, rgb(251 126 2), rgb(178 2 2));
+    box-shadow: rgb(251 126 2 / 40%) 0px 3px 16px 0px;
+}

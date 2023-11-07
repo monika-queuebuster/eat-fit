@@ -168,3 +168,36 @@ export const cityData = [
     { id: 11, city: "Surat", img: "/assets/cities/surat.svg", altText: 'surat' },
     { id: 12, city: "Coimbatore", img: "/assets/cities/coimbatore.svg", altText: 'coimbatore' },
 ]
+
+export const dashboardOptions = [
+    {
+        id: 1,
+        option: 'Orders',
+        icon: '/assets/dashboard/cart.svg'
+    },
+    {
+        id: 2,
+        option: 'Subscriptions',
+        icon: '/assets/dashboard/combined.svg'
+    },
+    {
+        id: 3,
+        option: 'Account',
+        icon: '/assets/dashboard/settings.svg'
+    },
+    {
+        id: 4,
+        option: 'Support',
+        icon: '/assets/dashboard/support.svg'
+    },
+    {
+        id: 5,
+        option: 'Food Passes',
+        icon: '/assets/dashboard/cart.svg'
+    },
+    {
+        id: 6,
+        option: 'Logout',
+        icon: '/assets/dashboard/logout.svg'
+    },
+]

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@700&family=Varela+Round&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Kalam:wght@700&family=Varela+Round&display=swap");
 
 * {
   margin: 0;
@@ -12,6 +12,13 @@ html {
 }
 body {
   font-size: 1.6rem !important;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
 }
 
 @media only screen and (min-width: 2400px) and (max-width: 2600px) {
