@@ -4,6 +4,8 @@ import styles from '../../styles/components/common/LoginModal.module.css';
 import { RxCross2 } from 'react-icons/rx';
 import { BsArrowLeftShort } from 'react-icons/bs';
 import Image from 'next/image';
+import { userLogin } from '../../services/apiServices';
+import { toast } from "sonner";
 
 const customStyles = {
     overlay: {
@@ -32,6 +34,17 @@ const LoginModal = ({ isOpen, closeModal, isLogin }) => {
     }, [closeModal])
 
     const sendOtp = () => {
+        const userData = { "mobile_no": 5544754278 }
+        // userLogin(userData)
+        toast.promise(userLogin(userData), {
+            loading: "Loading...",
+            success: (data) => {
+                return `${data}`;
+            },
+            error: (data) => {
+                return `${data}`;
+            },
+        });
         setOtpField(true);
     }
 
