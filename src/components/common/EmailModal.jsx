@@ -12,7 +12,7 @@ const customStyles = {
     },
 };
 
-const EmailModal = ({ isOpen, closeModal, title, setUserData }) => {
+const EmailModal = ({ isOpen, closeModal, title, userData, setUserData }) => {
 
     const[email, setEmail] = useState('');
     const [validEmail, setValidEmail] = useState(false);
@@ -23,7 +23,7 @@ const EmailModal = ({ isOpen, closeModal, title, setUserData }) => {
     },[email])
 
     const closeEmailPopup = () => {
-        title === "Email Adderss" ? setUserData({email: email}) : setUserData({workEmail: email})
+        title === "Email Adderss" ? setUserData({ ...userData, email: email }) : setUserData({ ...userData, workEmail: email })
         setEmail('');
         closeModal();
     }

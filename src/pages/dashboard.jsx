@@ -7,46 +7,71 @@ import { MdOutlineGirl, MdBoy } from 'react-icons/md';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import EmailModal from '../components/common/EmailModal';
+import { profileUpdate, authorization } from '../services/apiServices';
+import { toast } from 'react-toastify';
 
 const dashboard = ({ loginSuccess }) => {
 
     const router = useRouter();
     const hiddenFileInput = useRef(null);
     const [userData, setUserData] = useState({
-        name: 'monika',
-        phone: 8882045075,
+        name: '',
+        phone: '',
         email: '',
         workEmail: '',
         gender: '',
-        profileImg: null
+        img: null,
+        dob: new Date()
     })
-    const [date, setDate] = useState(new Date());
     const [emailModal, setEmailModal] = useState(false);
     const [emailTitle, setEmailTitle] = useState('');
 
-    useEffect(()=> {
-        !loginSuccess && router.push('/')
-    },[loginSuccess])
+    useEffect(() => {
+        authorization().then((res => {
+            if (res?.status === 200) {
+                setUserData({ ...userData, name: res?.user?.name, phone: res?.user?.mobile_no, email: res?.user?.email, workEmail: res?.user?.workEmail, gender: res?.user?.gender, img: res?.user?.img, dob: res?.user?.dob.format() })
+            }
+        })).catch((err) => toast.error(err))
+        const userInfo = typeof window !== 'undefined' && localStorage.getItem('userInfo');
+        const mobile_no = JSON.parse(userInfo)?.mobile_no
+        setUserData({ ...userData, phone: (mobile_no) });
+
+        // -------checking if user is logged out----------
+        if(!userInfo) {
+            router.push('/')
+        }
+    }, [])
 
     const handleClick = () => {
         hiddenFileInput.current.click();
     }
 
+    // -------------setting user profile image-------------
     const handleFileChange = (e) => {
         const selectedFile = e.target.files[0];
         if (selectedFile) {
             const reader = new FileReader();
             reader.onloadend = () => {
-                // setUserData(reader.result);
-                setUserData({ profileImg: reader.result })
+                setUserData({ ...userData, img: reader.result })
             };
             reader.readAsDataURL(selectedFile);
-        }
+        }        
+    }
+
+    // -------updating user info-------
+    const updateUserInfo = () => {
+        profileUpdate(userData).then((res) => {
+            if (res?.status === 200) {
+                toast.success(res?.message)
+            }
+        }).catch((err) => {
+            toast.error(err)
+        })
     }
 
     return (
         <>
-            <EmailModal isOpen={emailModal} closeModal={() => setEmailModal(false)} title={emailTitle} setUserData={setUserData} />
+            <EmailModal isOpen={emailModal} closeModal={() => setEmailModal(false)} title={emailTitle} userData={userData} setUserData={setUserData} />
             <div className={styles.dashboard_container}>
                 <div className={styles.left_container}>
                     <div className={styles.name_container}>
@@ -69,7 +94,7 @@ const dashboard = ({ loginSuccess }) => {
                 <div className={styles.right_container}>
                     <div className={styles.image_section}>
                         <button className={styles.select_user_img} onClick={handleClick}>
-                            <div className={styles.user_image}><Image src={userData?.profileImg ? userData?.profileImg : '/assets/navigation/user-mobile.png'} alt='user image' fill /></div>
+                            <div className={styles.user_image}><Image src={userData?.img ? userData?.img : '/assets/navigation/user-mobile.png'} alt='user image' fill /></div>
                             <div className={styles.edit_text}>EDIT</div>
                             <input
                                 type="file"
@@ -84,13 +109,13 @@ const dashboard = ({ loginSuccess }) => {
                         <div className={styles.form_row}>
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                                 <label>NAME</label>
-                                <input className={styles.form_input} type='text' value={userData?.name} onChange={(e) => setUserData({ name: e.target.value })} />
+                                <input className={styles.form_input} type='text' value={userData?.name} onChange={(e) => setUserData({ ...userData, name: e.target.value })} />
                             </div>
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                                 <label>PHONE NUMBER</label>
                                 <div>
                                     <span className={styles.country_code}>+91-</span>
-                                    <input className={styles.form_input} type='number' value={userData?.phone} onChange={(e) => setUserData({ phone: e.target.value })} style={{ width: '90%' }} />
+                                    <input className={styles.form_input} type='number' value={userData?.phone} onChange={(e) => setUserData({ ...userData, phone: e.target.value })} style={{ width: '90%' }} />
                                 </div>
                             </div>
                         </div>
@@ -100,8 +125,8 @@ const dashboard = ({ loginSuccess }) => {
                                 <div style={{ display: 'flex', alignItems: 'center' }}>
                                     <input className={styles.form_input} type='text' value={userData?.gender} style={{ width: '75%' }} />
                                     <span>
-                                        <MdOutlineGirl className={styles.gender_icon} style={{ borderRight: '1px solid grey', cursor: 'pointer' }} onClick={() => setUserData({ gender: 'Female' })} />
-                                        <MdBoy className={styles.gender_icon} style={{ cursor: 'pointer' }} onClick={() => setUserData({ gender: 'Male' })} />
+                                        <MdOutlineGirl className={styles.gender_icon} style={{ borderRight: '1px solid grey', cursor: 'pointer' }} onClick={() => setUserData({ ...userData, gender: 'Female' })} />
+                                        <MdBoy className={styles.gender_icon} style={{ cursor: 'pointer' }} onClick={() => setUserData({ ...userData, gender: 'Male' })} />
                                     </span>
                                 </div>
                             </div>
@@ -109,8 +134,8 @@ const dashboard = ({ loginSuccess }) => {
                                 <label>Date Of Birth</label>
                                 {/* <input className={styles.form_input} type='number' /> */}
                                 <DatePicker
-                                    selected={date}
-                                    onChange={(date) => setDate(date)}
+                                    selected={userData?.dob}
+                                    onChange={(date) => setUserData({ ...userData, dob: date })}
                                     showYearDropdown
                                     yearDropdownItemNumber={50}
                                     scrollableYearDropdown
@@ -132,6 +157,7 @@ const dashboard = ({ loginSuccess }) => {
                     </div>
                 </div>
             </div>
+            <button className={styles.update_btn} onClick={updateUserInfo}>Update</button>
         </>
     )
 }

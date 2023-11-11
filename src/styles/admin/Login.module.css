@@ -1,0 +1,55 @@
+.admin_form {
+  padding: 3rem 6rem;
+  border-radius: 10px;
+}
+
+.admin_form > h1 {
+  margin-bottom: 5rem;
+}
+
+.form_row {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+  width: 30rem;
+}
+
+.form_row > label {
+  font-size: 1.4rem;
+  color: rgb(72, 72, 72);
+  margin-bottom: 1rem;
+}
+
+.form_input {
+  padding: 0.5rem 0;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid rgb(200, 200, 200);
+  font-size: 1.6rem;
+  font-weight: 600;
+  background-color: transparent;
+}
+
+.password_icon {
+  font-size: 1.6rem;
+  color: rgb(157, 157, 157);
+}
+
+.icon_container {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: rgb(200, 200, 200);
+  text-underline-offset: 1rem;
+}
+
+.login_btn {
+  padding: 1rem 5rem;
+  border-radius: 3rem;
+  font-size: 1.7rem;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: #fff;
+  background-image: linear-gradient(101deg, rgb(251 126 2), rgb(178 2 2));
+  box-shadow: rgb(251 126 2 / 40%) 0px 3px 16px 0px;
+}

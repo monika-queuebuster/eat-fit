@@ -24,6 +24,12 @@ const NavigationBar = ({ setLoginModal, loginSuccess, setLoginSuccess }) => {
     };
   }, []);
 
+  const handleLogout = () => {
+    setLoginSuccess(false)
+    setDropdown(false)
+    localStorage.clear()
+  }
+
   return (
     <>
       <div className={styles.navigation_bar}>
@@ -35,12 +41,18 @@ const NavigationBar = ({ setLoginModal, loginSuccess, setLoginSuccess }) => {
             <div className={`${styles.link_ele} ${router.asPath === '/food-pass' && styles.active_link}`}><Link href="/food-pass">Food Pass</Link></div>
           </div>
           <div className={styles.nav_end_links}>
-            <div><Link href='https://wa.me/919606032257'><div className={styles.whatsapp_icon}><Image src='/assets/navigation/whatsapp-icon.svg' alt='whatsapp icon' fill /></div></Link></div>
             {
-              loginSuccess ?
-                <div className={styles.login_container}><div className={styles.user_icon}><Image src='/assets/navigation/user-image.svg' alt='/user-image' fill /></div><MdKeyboardArrowDown className={styles.down_arrow} onClick={() => setDropdown(!dropdown)} /></div>
+              router.asPath.includes('/admin') ? null
                 :
-                <div className={styles.login_container} onClick={() => setLoginModal(true)}><div className={styles.user_icon}><Image src='/assets/navigation/user-image.svg' alt='/user-image' fill /></div> Login</div>
+                <>
+                  <div><Link href='https://wa.me/919606032257'><div className={styles.whatsapp_icon}><Image src='/assets/navigation/whatsapp-icon.svg' alt='whatsapp icon' fill /></div></Link></div>
+                  {
+                    loginSuccess ?
+                      <div className={styles.login_container}><div className={styles.user_icon}><Image src='/assets/navigation/user-image.svg' alt='/user-image' fill /></div><MdKeyboardArrowDown className={styles.down_arrow} onClick={() => setDropdown(!dropdown)} /></div>
+                      :
+                      <div className={styles.login_container} onClick={() => setLoginModal(true)}><div className={styles.user_icon}><Image src='/assets/navigation/user-image.svg' alt='/user-image' fill /></div> Login</div>
+                  }
+                </>
             }
           </div>
         </nav>
@@ -50,8 +62,8 @@ const NavigationBar = ({ setLoginModal, loginSuccess, setLoginSuccess }) => {
         </nav>
       </div>
       <div className={`${styles.dropdown_menu} ${dropdown ? styles.show : styles.hide}`} ref={dropdownRef}>
-        <span onClick={() => {router.push('/dashboard'), setDropdown(false)}}>Profile</span>
-        <span onClick={() => {setLoginSuccess(false), setDropdown(false)}}>Logout</span>
+        <span onClick={() => { router.push('/dashboard'), setDropdown(false) }}>Profile</span>
+        <span onClick={handleLogout}>Logout</span>
       </div>
     </>
   )

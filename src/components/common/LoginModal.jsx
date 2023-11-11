@@ -4,8 +4,10 @@ import styles from '../../styles/components/common/LoginModal.module.css';
 import { RxCross2 } from 'react-icons/rx';
 import { BsArrowLeftShort } from 'react-icons/bs';
 import Image from 'next/image';
-import { userLogin } from '../../services/apiServices';
-import { toast } from "sonner";
+import { userLogin, userVerify, resendOTP } from '../../services/apiServices';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useRouter } from 'next/router';
 
 const customStyles = {
     overlay: {
@@ -21,7 +23,10 @@ const LoginModal = ({ isOpen, closeModal, isLogin }) => {
     const [activeBtn, setActiveBtn] = useState(false);
     const [otpField, setOtpField] = useState(false);
     const [otp, setOtp] = useState(Array(6).fill(''));
+    const [userData, setUserData] = useState({ mobile_no: '' })
+
     const inputRefs = Array(6).fill(null).map((_, index) => useRef(null));
+    const router = useRouter();
 
     // --------checking phone number length---------
     useEffect(() => {
@@ -33,19 +38,28 @@ const LoginModal = ({ isOpen, closeModal, isLogin }) => {
         setPhone(null)
     }, [closeModal])
 
+    useEffect(()=> {
+        localStorage.setItem("userInfo", JSON.stringify(userData));
+    })
+
+    // --------------api call for sending otp-------------
     const sendOtp = () => {
-        const userData = { "mobile_no": 5544754278 }
-        // userLogin(userData)
-        toast.promise(userLogin(userData), {
-            loading: "Loading...",
-            success: (data) => {
-                return `${data}`;
-            },
-            error: (data) => {
-                return `${data}`;
-            },
-        });
-        setOtpField(true);
+        if (otpField) {
+            resendOTP().then((res) => {
+                if (res?.status === 200) {
+                    toast.success(res?.message);
+                }
+            }).catch((err) => toast.error(err));
+        } else {
+            const userData = { "mobile_no": phone }
+            userLogin(userData).then((res => {
+                if (res?.status === 200) {
+                    setOtpField(true);
+                    toast.success(res?.message)
+                    localStorage.setItem('userId', res?.data?.userId)
+                }
+            })).catch((err) => toast.error(err))
+        }
     }
 
     const goBack = () => setOtpField(false);
@@ -82,9 +96,22 @@ const LoginModal = ({ isOpen, closeModal, isLogin }) => {
         }
     };
 
+    // -----------api call for verifying otp-----------
     const verifyOtp = () => {
-        isLogin(true);
-        closeModal();
+        console.log('otp', parseInt(otp.join('')))
+        const userOtp = { "otp": parseInt(otp.join('')) }
+        userVerify(userOtp).then((res) => {
+            if (res?.status === 200) {
+                toast.success(res?.message);
+                setUserData({ mobile_no: res?.data?.mobile_no })
+                localStorage.setItem("accessToken", res?.data?.token)
+                isLogin(true);
+                closeModal();
+                router.push('/dashboard')
+            }
+        }).catch((err) => {
+            toast.error(err);
+        })
     }
 
     return (
