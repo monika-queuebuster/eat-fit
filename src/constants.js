@@ -201,3 +201,32 @@ export const dashboardOptions = [
         icon: '/assets/dashboard/logout.svg'
     },
 ]
+
+
+export const adminSidebar = [
+    {
+        id: 1,
+        item: "Pages",
+        subItems: ["About Us", "Contact Us", "Privacy Policy", "Terms & Condition", "Refund Policy"]
+    },
+    {
+        id: 2,
+        item: "Category",
+        subItems: ["Add Category", "View Category", "Edit Category", "Delete Category"]
+    },
+    {
+        id: 3,
+        item: "Food Meal",
+        subItems: ["Add Meal", "View Meal", "Edit Meal", "Delete Meal"]
+    },
+    {
+        id: 4,
+        item: "Subscription",
+        subItems: ["Add Subscription", "View Subscription", "Edit Subscription", "Delete Subscription"]
+    },
+    {
+        id: 5,
+        item: "User",
+        subItems: ["Registered User", "Subscribed User"]
+    }
+]
