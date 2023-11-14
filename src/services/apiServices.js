@@ -1,12 +1,14 @@
 import axios from "axios";
 import { Toaster, toast } from "sonner";
 
-axios.defaults.baseURL = "http://api.bookyourtiffin.com/api/";
-// axios.defaults.headers.common["Authorization"] =
-//   typeof window !== "undefined" && localStorage.getItem("accessToken");
+axios.defaults.baseURL = "https://api.bookyourtiffin.com/api/";
 axios.defaults.headers.post["Content-Type"] = "application/json";
 
-const userId = typeof window !== "undefined" && localStorage.getItem("userId");
+const getUserId = () => {
+  const userId =
+    typeof window !== "undefined" && localStorage.getItem("userId");
+  return userId;
+};
 
 const updateAccessToken = () => {
   const accessToken =
@@ -32,7 +34,7 @@ export const userLogin = (userData) => {
 
 export const userVerify = (userOtp) => {
   return new Promise(async (resolve, reject) => {
-    console.log("---user id---", userId);
+    const userId = getUserId();
     try {
       const { data } = await axios.post(`front/user/verify/${userId}`, userOtp);
       if (data.status == 0) throw data;
@@ -47,7 +49,7 @@ export const userVerify = (userOtp) => {
 
 export const resendOTP = () => {
   return new Promise(async (resolve, reject) => {
-    console.log("---user id---", userId);
+    const userId = getUserId();
     try {
       const { data } = await axios.get(`front/user/resend/${userId}`);
       if (data.status == 0) throw data;
@@ -63,6 +65,7 @@ export const resendOTP = () => {
 export const profileUpdate = (userData) => {
   return new Promise(async (resolve, reject) => {
     updateAccessToken();
+    const userId = getUserId();
     try {
       const { data } = await axios.patch(
         `front/user/profile/${userId}`,
@@ -82,8 +85,7 @@ export const authorization = () => {
   return new Promise(async (resolve, reject) => {
     updateAccessToken();
     try {
-      const { data } = await axios.get(
-        `front/user/authorization`);
+      const { data } = await axios.get(`front/user/authorization`);
       if (data.status == 0) throw data;
       else {
         resolve(data);
@@ -107,3 +109,63 @@ export const adminLogin = (adminData) => {
     }
   });
 };
+
+export const addCategory = (categoryData) => {
+  return new Promise(async (resolve, reject) => {
+    updateAccessToken();
+    try {
+      const { data } = await axios.post(`/cms/dropdown/category`, categoryData);
+      if (data.status == 0) throw data;
+      else {
+        resolve(data);
+      }
+    } catch (data) {
+      reject(data.message);
+    }
+  });
+};
+
+export const getCategories = () => {
+  return new Promise(async (resolve, reject) => {
+    updateAccessToken();
+    try {
+      const { data } = await axios.get(`/cms/dropdown/category/`);
+      if (data.status == 0) throw data;
+      else {
+        resolve(data);
+      }
+    } catch (data) {
+      reject(data.message);
+    }
+  });
+};
+
+export const deleteCategory = (categoryId) => {
+  return new Promise(async (resolve, reject) => {
+    updateAccessToken();
+    try {
+      const { data } = await axios.delete(`/cms/dropdown/category/:${categoryId}`);
+      if (data.status == 0) throw data;
+      else {
+        resolve(data);
+      }
+    } catch (data) {
+      reject(data.message);
+    }
+  });
+}
+
+export const updateCategoryItem = (categoryData, categoryId) => {
+  return new Promise(async (resolve, reject) => {
+    updateAccessToken();
+    try {
+      const { data } = await axios.patch(`/cms/dropdown/category/${categoryId}`, categoryData);
+      if (data.status == 0) throw data;
+      else {
+        resolve(data);
+      }
+    } catch (data) {
+      reject(data.message);
+    }
+  });
+}
