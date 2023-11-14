@@ -1,0 +1,39 @@
+.dahboard_container {
+    display: flex;
+}
+
+.sidebar {
+    padding: 2rem 0rem;
+    box-shadow: -1px 0 15px 0 rgba(0, 0, 0, 0.06);
+    width: 20%;
+    height: inherit;
+}
+
+.sidebar_ele_container {
+    border-bottom: 1px solid rgba(212, 212, 212, 0.364);
+    cursor: pointer;
+}
+
+.sidebar_ele {
+    padding: 3rem 4rem 3rem 4rem;
+}
+
+.sidebar_subele_hide {
+    height: 0;
+    display: none;
+}
+
+.sidebar_subele {
+    padding: 2rem 4rem;
+    background-color: rgba(219, 219, 219, 0.454);
+    border-bottom: 1px solid rgb(246, 246, 246);
+}
+
+.sidebar > h3 {
+    padding: 2rem 4rem;
+    border-bottom: 1px solid rgba(196, 196, 196, 0.56);
+}
+
+.form_section {
+    width: 80%;
+}

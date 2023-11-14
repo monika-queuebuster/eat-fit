@@ -81,6 +81,8 @@
   height: 100%;
   width: 100%;
   position: relative;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .select_user_img {
@@ -91,11 +93,6 @@
   position: relative;
   border-radius: 50%;
   cursor: pointer;
-}
-
-.user_image > img {
-  border-radius: 50%;
-  object-fit: cover;
 }
 
 .edit_text {
