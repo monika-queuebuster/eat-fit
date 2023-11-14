@@ -28,6 +28,7 @@ const NavigationBar = ({ setLoginModal, loginSuccess, setLoginSuccess }) => {
     setLoginSuccess(false)
     setDropdown(false)
     localStorage.clear()
+    router.push('/')
   }
 
   return (
