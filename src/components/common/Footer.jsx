@@ -7,8 +7,8 @@ import Link from 'next/link'
 const Footer = () => {
     return (
         <div className={styles.footer_container}>
-            <div className={styles.footer_logo_container}><Image src='/assets/footer-logo.svg' alt='logo' fill /></div>
-            <p className={styles.footer_desc}>At Eatfit we offer healthy, yummy, honest & wholesome Indian food, made with real ingredients, zero trans fat, and lots of love!</p>
+            <div className={styles.footer_logo_container}><Image src='/assets/navigation/byt_logo.png' alt='logo' fill /></div>
+            <p className={styles.footer_desc}>At Book Your Tiffin we offer healthy, yummy, honest & wholesome Indian food, made with real ingredients, zero trans fat, and lots of love!</p>
             <h3 className={styles.sitemap}>Site Map</h3>
             <div className={styles.footer_link_container}>
                 {

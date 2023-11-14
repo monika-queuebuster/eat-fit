@@ -28,7 +28,7 @@
 .footer_link_container {
   margin-top: 2.5rem;
   display: flex;
-  justify-content: space-between;
+  gap: 10rem;
 }
 
 .link_heading {
@@ -73,6 +73,7 @@
   .footer_link_container {
     flex-wrap: wrap;
     justify-content: flex-start;
+    gap: 0rem;
   }
 
   .footer_link_container > div {

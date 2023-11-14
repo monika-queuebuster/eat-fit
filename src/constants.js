@@ -59,16 +59,6 @@ export const breakfastData = [
 
 export const footerLinks = [
     {
-        id: 1,
-        heading: 'Our Brands',
-        subLinks: ["All Brands", "Top Picks", "EatFit", "HRX", "Chaat Street", "Great Indian Khichdi", "Olio Pizzas", "Aligarh House Biryani", "Home Plate", "Paratha Box", "CakeZone", "Smoodies", "Chow Tao"]
-    },
-    {
-        id: 2, 
-        heading: "Food Category",
-        subLinks: ["Navratri Special", "Indian Thali", "Rice Bowl", "Gourmet", "Fruit Pop", "Pizza", "Kulcha Burger", "Biryani & Kebab",  "Chinese", "Khichdi", "Vegan Sauces & Dips","All Day","Ala Carte","Beverage","Dessert"]
-    },
-    {
         id: 3,
         heading: "Meal Plan",
         subLinks: ["Breakfast", "Lunch", "Sancks", "Dinner"]
