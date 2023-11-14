@@ -50,7 +50,7 @@ export default function App({ Component, pageProps }) {
         setLoginSuccess={setLoginSuccess}
         loginSuccess={loginSuccess}
       />
-      {router.asPath != "/dashboard" && <Footer />}
+      {(router.asPath != "/dashboard" && router.asPath != "/admin/dashboard") && <Footer />}
       <MobileNav />
     </>
   );

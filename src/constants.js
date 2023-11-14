@@ -212,17 +212,17 @@ export const adminSidebar = [
     {
         id: 2,
         item: "Category",
-        subItems: ["Add Category", "View Category", "Edit Category", "Delete Category"]
+        subItems: ["Add Category", "Category List"]
     },
     {
         id: 3,
         item: "Food Meal",
-        subItems: ["Add Meal", "View Meal", "Edit Meal", "Delete Meal"]
+        subItems: ["Add Meal", "Meal List"]
     },
     {
         id: 4,
         item: "Subscription",
-        subItems: ["Add Subscription", "View Subscription", "Edit Subscription", "Delete Subscription"]
+        subItems: ["Add Subscription", "Subscription List"]
     },
     {
         id: 5,

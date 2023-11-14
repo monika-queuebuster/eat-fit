@@ -9,6 +9,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import EmailModal from '../components/common/EmailModal';
 import { profileUpdate, authorization } from '../services/apiServices';
 import { toast } from 'react-toastify';
+import moment from 'moment';
 
 const dashboard = ({ loginSuccess }) => {
 
@@ -29,7 +30,9 @@ const dashboard = ({ loginSuccess }) => {
     useEffect(() => {
         authorization().then((res => {
             if (res?.status === 200) {
-                setUserData({ ...userData, name: res?.user?.name, phone: res?.user?.mobile_no, email: res?.user?.email, workEmail: res?.user?.workEmail, gender: res?.user?.gender, img: res?.user?.img, dob: res?.user?.dob.format() })
+                // console.log('---user data---', moment(JSON.parse(res?.user?.dob), 'mm/dd/yyyy').format('l'), moment(res?.user?.dob, 'mm/dd/yyyy').format('l'))
+                console.log("---user data---",res?.user?.img)
+                setUserData({ ...userData, name: res?.user?.name, phone: res?.user?.mobile_no, email: res?.user?.email, workEmail: res?.user?.workEmail, gender: res?.user?.gender, dob: new Date(res?.user?.dob), img: res?.user?.img })
             }
         })).catch((err) => toast.error(err))
         const userInfo = typeof window !== 'undefined' && localStorage.getItem('userInfo');
@@ -37,7 +40,7 @@ const dashboard = ({ loginSuccess }) => {
         setUserData({ ...userData, phone: (mobile_no) });
 
         // -------checking if user is logged out----------
-        if(!userInfo) {
+        if (!userInfo) {
             router.push('/')
         }
     }, [])
@@ -48,19 +51,19 @@ const dashboard = ({ loginSuccess }) => {
 
     // -------------setting user profile image-------------
     const handleFileChange = (e) => {
-        const selectedFile = e.target.files[0];
-        if (selectedFile) {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setUserData({ ...userData, img: reader.result })
-            };
-            reader.readAsDataURL(selectedFile);
-        }        
+        setUserData({ ...userData, img: e.target.files[0] })
     }
 
     // -------updating user info-------
     const updateUserInfo = () => {
-        profileUpdate(userData).then((res) => {
+        const formData = new FormData();
+        formData.append('img', userData.img);
+        formData.append('name', userData.name);
+        formData.append('phone', userData.phone);
+        formData.append('email', userData.email);
+        formData.append('gender', userData.gender);
+        formData.append('dob', moment(userData.dob, 'mm/dd/yyyy').format('l'));
+        profileUpdate(formData).then((res) => {
             if (res?.status === 200) {
                 toast.success(res?.message)
             }
@@ -94,7 +97,7 @@ const dashboard = ({ loginSuccess }) => {
                 <div className={styles.right_container}>
                     <div className={styles.image_section}>
                         <button className={styles.select_user_img} onClick={handleClick}>
-                            <div className={styles.user_image}><Image src={userData?.img ? userData?.img : '/assets/navigation/user-mobile.png'} alt='user image' fill /></div>
+                            <div><img src={`${userData.img ? userData.img : '/assets/navigation/user-mobile.png'}`} alt='user image' className={styles.user_image} /></div>
                             <div className={styles.edit_text}>EDIT</div>
                             <input
                                 type="file"
