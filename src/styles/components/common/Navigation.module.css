@@ -55,7 +55,7 @@
 }
 
 .active_link > a {
-  color: #fc2e71;
+  color: rgb(251 126 2);
 }
 
 .desktop_nav {
@@ -78,7 +78,7 @@
 }
 
 .active_element {
-  color: #fc2e71;
+  color: rgb(251 126 2);
 }
 
 .down_arrow {
