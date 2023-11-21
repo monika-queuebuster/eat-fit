@@ -3,7 +3,7 @@ import styles from '../styles/components/Category.module.css';
 import { addCategory } from '../services/apiServices';
 import { toast } from 'react-toastify';
 
-const AddCategory = () => {
+const AddCategory = ({setShowmenu, showSubmenu}) => {
     const [createCategory, setCreateCategory] = useState({
         title: '',
         imgUrl: null,
@@ -21,6 +21,7 @@ const AddCategory = () => {
         addCategory(formData).then((res) => {
             if (res?.status) {
                 toast.success(res?.message)
+                setShowmenu({...showSubmenu, submenu: "Category List"})
             }
         }).catch((err) => {
             toast.error(err)

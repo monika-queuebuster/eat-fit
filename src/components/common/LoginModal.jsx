@@ -108,6 +108,7 @@ const LoginModal = ({ isOpen, closeModal, isLogin }) => {
                 isLogin(true);
                 closeModal();
                 router.push('/dashboard')
+                setOtpField(false);
             }
         }).catch((err) => {
             toast.error(err);

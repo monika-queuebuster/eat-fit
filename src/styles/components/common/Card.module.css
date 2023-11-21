@@ -4,10 +4,10 @@
 }
 
 .product_image {
-  height: 30rem;
-  width: 22rem;
+  height: 20rem;
+  width: auto;
   position: relative;
-  border-radius: 2rem;
+  border-radius: 0.5rem;
   transition: all 0.5s;
   bottom: 0;
 }

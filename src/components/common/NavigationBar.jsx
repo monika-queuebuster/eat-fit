@@ -4,8 +4,9 @@ import styles from '../../styles/components/common/Navigation.module.css';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { MdKeyboardArrowDown } from 'react-icons/md';
+import { BsCart } from "react-icons/bs";
 
-const NavigationBar = ({ setLoginModal, loginSuccess, setLoginSuccess }) => {
+const NavigationBar = ({ setLoginModal, loginSuccess, setLoginSuccess, cartItems }) => {
   const router = useRouter();
 
   const [dropdown, setDropdown] = useState(false);
@@ -37,6 +38,7 @@ const NavigationBar = ({ setLoginModal, loginSuccess, setLoginSuccess }) => {
         <nav className={`${styles.nav} ${styles.desktop_nav}`}>
           <div className={styles.nav_logo} onClick={() => router.push('/')}><Image src='/assets/navigation/byt_logo.png' alt='eat fit' fill /></div>
           <div className={styles.nav_mid_links}>
+            <div className={`${styles.link_ele} ${router.asPath === '/order' && styles.active_link}`}><Link href="/order">Order</Link></div>
             <div className={`${styles.link_ele} ${router.asPath === '/' && styles.active_link}`}><Link href="/">Meal Plans</Link></div>
             <div className={`${styles.link_ele} ${router.asPath === '/search' && styles.active_link}`}><Link href="/">Search</Link></div>
             <div className={`${styles.link_ele} ${router.asPath === '/food-pass' && styles.active_link}`}><Link href="/food-pass">Food Pass</Link></div>
@@ -46,7 +48,10 @@ const NavigationBar = ({ setLoginModal, loginSuccess, setLoginSuccess }) => {
               router.asPath.includes('/admin') ? null
                 :
                 <>
-                  <div><Link href='https://wa.me/919606032257'><div className={styles.whatsapp_icon}><Image src='/assets/navigation/whatsapp-icon.svg' alt='whatsapp icon' fill /></div></Link></div>
+                <p className={styles.icon_container} onClick={()=>router.push('/cart')}><BsCart className={styles.cart_icon} /><p className={styles.item_count}>{cartItems}</p></p>
+                  <div>
+                    <Link href='https://wa.me/919606032257'><div className={styles.whatsapp_icon}><Image src='/assets/navigation/whatsapp-icon.svg' alt='whatsapp icon' fill /></div></Link>
+                  </div>
                   {
                     loginSuccess ?
                       <div className={styles.login_container}><div className={styles.user_icon}><Image src='/assets/navigation/user-image.svg' alt='/user-image' fill /></div><MdKeyboardArrowDown className={styles.down_arrow} onClick={() => setDropdown(!dropdown)} /></div>

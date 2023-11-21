@@ -16,6 +16,8 @@
 
 .sidebar_ele {
     padding: 3rem 4rem 3rem 4rem;
+    display: flex;
+    justify-content: space-between;
 }
 
 .sidebar_subele_hide {
@@ -25,8 +27,8 @@
 
 .sidebar_subele {
     padding: 2rem 4rem;
-    background-color: rgba(219, 219, 219, 0.454);
-    border-bottom: 1px solid rgb(246, 246, 246);
+    background-color: rgba(246, 246, 246);
+    border-bottom: 1px solid rgba(219, 219, 219, 0.454);
 }
 
 .sidebar > h3 {
@@ -36,4 +38,8 @@
 
 .form_section {
     width: 80%;
+}
+
+.active_submenu {
+    background-color: rgba(219, 219, 219, 0.454);
 }

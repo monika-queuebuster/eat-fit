@@ -10,7 +10,7 @@
 }
 
 .form_input {
-  padding: 0.5rem 0;
+  padding: 1rem 0;
   border: none;
   outline: none;
   border-bottom: 1px solid rgb(200, 200, 200);
@@ -56,11 +56,15 @@
 
 .category_list_container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   margin-top: 3rem;
+  row-gap: 2rem;
+  column-gap: 2rem;
 }
 
-.category {
+.category,
+.meal,
+.subscription {
   border: 1px solid rgb(207, 207, 207);
   border-radius: 0.5rem;
   padding: 2rem;
@@ -94,7 +98,7 @@
 }
 
 .category_modal > div {
-  padding: 1rem 2rem; 
+  padding: 1rem 2rem;
   cursor: pointer;
 }
 
@@ -104,8 +108,8 @@
 }
 
 .select_user_img {
-  height: 15rem;
-  width: 15rem;
+  height: 25rem;
+  width: 25rem;
   border: none;
   outline: none;
   position: relative;
@@ -127,10 +131,104 @@
   font-weight: 600;
 }
 
-.user_image {
-  height: 85%;
-  width: 85%;
+.food_image {
+  height: auto;
+  width: 100%;
   position: relative;
   border-radius: 50%;
   object-fit: cover;
+}
+
+.category_img {
+  height: auto;
+  width: 25rem;
+}
+
+.form_textarea {
+  outline: none;
+  padding: 1rem;
+  font-size: 1.6rem;
+  width: 35rem;
+}
+
+.select_input {
+  padding: 1rem 0;
+  outline: none;
+  font-size: 1.6rem;
+  font-weight: 600;
+  background-color: transparent;
+  width: 35rem;
+  border-color: rgb(200, 200, 200);
+  border-radius: 0.3rem;
+}
+
+.discount_price {
+  font-size: 1.4rem;
+}
+
+.real_price {
+  font-size: 1.4rem;
+  color: #6a6a6a;
+  text-decoration: line-through;
+}
+
+.veg_sign {
+  color: green;
+}
+
+.nonveg_sign {
+  color: red;
+}
+
+.category_sign {
+  position: relative;
+  top: 0.2rem;
+}
+
+.day_container {
+  display: flex;
+  gap: 1rem;
+  border: 1px solid rgb(193, 193, 193);
+  border-radius: 1rem;
+  padding: 2rem;
+  margin-top: 1rem;
+  overflow: scroll;
+}
+
+.day_meal {
+  height: 10rem;
+  width: 12rem;
+  transition: 0.5s;
+}
+
+.day_meal:hover {
+  border: 2px solid #ff7200;
+  padding: 0.2rem;
+}
+
+.selected {
+  border: 2px solid #ff7200;
+  padding: 0.3rem;
+}
+
+.meal_name {
+  font-size: 1.4rem;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.meal_container {
+  width: 12rem;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.day_col_container {
+  margin-top: 3rem;
+  width: 50%;
+}
+
+.form_col {
+  display: flex;
+  gap: 3rem;
 }

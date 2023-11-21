@@ -8,7 +8,7 @@ const ProductCard = ({ id, image, altText, staringFrom, offerPrice }) => {
 
     return (
         <div className={styles.product_card} onClick={()=> router.push(`/purchase-order/${id}`)}>
-            <div className={styles.product_image}><Image src={image} alt={altText} fill /></div>
+            <img src={image} alt={altText} className={styles.product_image} />
             <div className={styles.price}>
                 <p>Starting from</p>
                 <p className={styles.starting_price}>₹ {staringFrom} / per meal</p>

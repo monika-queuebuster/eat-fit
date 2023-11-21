@@ -11,6 +11,9 @@ import { ToastContainer } from "react-toastify";
 export default function App({ Component, pageProps }) {
   const [loginModal, setLoginModal] = useState(false);
   const [loginSuccess, setLoginSuccess] = useState(false);
+  const [quantity, setQuantity] = useState(1);
+  const [cartItems, setCartItems] = useState(0);
+
   const router = useRouter();
 
   const closeLoginModal = () => setLoginModal(false);
@@ -23,7 +26,7 @@ export default function App({ Component, pageProps }) {
     <>
       <ToastContainer
         position="top-right"
-        autoClose={5000}
+        autoClose={3000}
         hideProgressBar={true}
         newestOnTop={false}
         closeOnClick
@@ -49,6 +52,10 @@ export default function App({ Component, pageProps }) {
         closeLoginModal={closeLoginModal}
         setLoginSuccess={setLoginSuccess}
         loginSuccess={loginSuccess}
+        setQuantity={setQuantity}
+        quantity={quantity}
+        setCartItems={setCartItems}
+        cartItems={cartItems}
       />
       {(router.asPath != "/dashboard" && router.asPath != "/admin/dashboard") && <Footer />}
       <MobileNav />
