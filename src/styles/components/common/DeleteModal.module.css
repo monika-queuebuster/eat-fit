@@ -1,0 +1,50 @@
+.modal_size {
+  width: 40rem;
+  height: 10rem;
+  border-radius: 0.5rem;
+  background-color: #ef9d4dd1;
+  padding: 3rem;
+  margin: 20rem auto;
+}
+
+.modal_heading {
+  color: #fff;
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 3rem;
+}
+
+.btn_container {
+  display: flex;
+  gap: 5rem;
+  justify-content: center;
+}
+
+.btn {
+  padding: 1rem 3rem;
+  background-color: #fff;
+  color: rgb(251 126 2);
+  border-radius: 0.5rem;
+  font-size: 1.5rem;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: 1s;
+}
+
+.btn:hover {
+    background-color: rgb(251 126 2);
+    color: #fff;
+}
+
+.close_btn {
+  background-color: transparent;
+  border-radius: 0.5rem;
+  color: #e4e4e4;
+  font-size: 2rem;
+  cursor: pointer;
+  border: none;
+  font-weight: 700;
+  display: flex;
+  align-items: flex-start;
+}

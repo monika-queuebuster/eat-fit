@@ -115,6 +115,27 @@
   display: none;
 }
 
+.icon_container {
+  cursor: pointer;
+  position: relative;
+  width: 3rem;
+}
+
+.cart_icon {
+  font-size: 2rem;
+}
+
+.item_count {
+  background-color: red;
+  padding: 1rem;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 1.5rem;
+  position: absolute;
+  bottom: 1.5rem;
+  right: 0.2rem;
+}
+
 @media screen and (max-width: 540px) {
   .nav_mid_links {
     gap: 1.5rem;

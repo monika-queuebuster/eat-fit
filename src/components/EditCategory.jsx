@@ -1,23 +1,19 @@
 import React, { useEffect, useRef, useState } from 'react';
-import styles from '../../../styles/components/Category.module.css'
-import { updateCategoryItem } from '../../../services/apiServices';
+import styles from '../styles/components/Category.module.css';
+import { updateCategoryItem } from '../services/apiServices';
 import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
 
-const updateCategory = () => {
+const EditCategory = ({categoryData, setShowmenu, showSubmenu}) => {
     const [updateCategory, setUpdatecategory] = useState({
         title: '',
         imgUrl: null,
     })
 
-    const router = useRouter();
 
     useEffect(()=> {
-        const dataList = typeof window != 'undefined' && localStorage.getItem('categoryList');
-        const categoryList = JSON.parse(dataList);
-        const category = categoryList?.filter((ele) => ele?._id === router.query.id)
-        setUpdatecategory({title: category[0]?.slug, imgUrl: category[0]?.imgUrl})
-    },[router.query.id])
+        setUpdatecategory({title: categoryData?.slug, imgUrl: categoryData?.imgUrl})
+    },[categoryData])
 
     const hiddenFileInput = useRef(null);
 
@@ -29,9 +25,10 @@ const updateCategory = () => {
         const formData = new FormData();
         formData.append('title', updateCategory?.title);
         formData.append('imgUrl', updateCategory?.imgUrl);
-        updateCategoryItem(formData, router.query.id).then((res)=> {
+        updateCategoryItem(formData, categoryData?.slug).then((res)=> {
             if(res?.status === 200) {
                 toast.success(res?.message);
+                setShowmenu({...showSubmenu, submenu: "Category List"})
             }
         }).catch((err)=> toast.error(err));
     }
@@ -46,7 +43,7 @@ const updateCategory = () => {
                 </div>
                 <div className={styles.input_container}>
                     <button onClick={() => hiddenFileInput.current.click()} className={styles.select_user_img}>
-                        <div><img src={`${updateCategory.imgUrl ? updateCategory.imgUrl : '/assets/navigation/user-mobile.png'}`} alt='user image' className={styles.user_image} /></div>
+                        <div><img src={`${updateCategory.imgUrl ? updateCategory.imgUrl : '/assets/navigation/user-mobile.png'}`} alt='user image' className={styles.food_image} /></div>
                         <div className={styles.edit_text}>EDIT</div>
                         <input
                             type="file"
@@ -62,4 +59,4 @@ const updateCategory = () => {
     )
 }
 
-export default updateCategory
+export default EditCategory

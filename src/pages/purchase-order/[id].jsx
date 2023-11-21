@@ -1,5 +1,4 @@
-import React, { useState } from 'react'
-import { breakfastData } from '../../constants'
+import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import Image from 'next/image';
 import styles from '../../styles/PurchaseOrder.module.css'
@@ -7,13 +6,28 @@ import Link from 'next/link';
 import UpcomingMeals from '../../components/UpcomingMeals';
 import HowItWorks from '../../components/HowItWorks';
 import WhySubscribe from '../../components/WhySubscribe';
+import { singleSubscription } from '../../services/apiServices';
+
 
 const purchaseDetail = () => {
     const router = useRouter();
+    const [data, setData] = useState();
     const [activeTab, setActiveTab] = useState("Upcoming meals");
     const [foodType, setFoodType] = useState("Non veg")
     const [purchaseType, setPurchaseType] = useState("Monthly")
     const [includeWeekends, setIncludeWeekends] = useState(false);
+
+    const { id } = router.query;
+    
+    useEffect(()=> {
+        singleSubscription(id).then((res)=> {
+            if(res?.status === 200) {
+                setData(res?.data);
+            }
+        })
+    },[router?.query])
+
+    console.log('data', data)
 
     const handleToggle = (e) => {
         if(e.target.checked) {
@@ -26,7 +40,7 @@ const purchaseDetail = () => {
     return (
         <div className={styles.purchase_page}>
             <div className={styles.left_container}>
-                <div className={styles.image_center_container}><div className={styles.food_img}><Image src='/assets/selectedFood.webp' alt='menu item' fill /></div></div>
+                <div className={styles.image_center_container}><img src={data?.img} alt='menu item' className={styles.food_img} /></div>
                 <div className={styles.subscription_tab}>
                     <div className={`${styles.tab_element} ${activeTab === "Upcoming meals" && styles.active_tab}`} onClick={() => setActiveTab("Upcoming meals")}>Upcoming meals</div>
                     <div className={`${styles.tab_element} ${activeTab === "How it works" && styles.active_tab}`} onClick={() => setActiveTab("How it works")}>How it works</div>
@@ -36,7 +50,7 @@ const purchaseDetail = () => {
                 <div>
                     {
                         activeTab === "Upcoming meals" ?
-                        <UpcomingMeals includeWeekends={includeWeekends} />
+                        <UpcomingMeals includeWeekends={includeWeekends} data={data} />
                         : activeTab === "How it works" ? <HowItWorks />
                         : activeTab === "Why subscribe" ? <WhySubscribe />
                         : <div className={styles.button_container}><button>Know More</button></div>
@@ -44,8 +58,8 @@ const purchaseDetail = () => {
                 </div>
             </div>
             <div className={styles.right_container}>
-                <h1 className={styles.meal_heading}>HRX Protein Meal</h1>
-                <p className={styles.meal_para}>This HRX Meals are packed with protein from whole, clean ingredients that not only ups your protein per meal but also provides fibre. This pack fills you with both satiety and variety.</p>
+                <h1 className={styles.meal_heading}>{data?.title}</h1>
+                <p className={styles.meal_para}>{data?.description}</p>
                 <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                     <div className={styles.data_container}>
                         <div className={styles.variable_data}>

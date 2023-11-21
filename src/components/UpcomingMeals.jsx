@@ -2,7 +2,7 @@ import Image from 'next/image'
 import React, { useState } from 'react'
 import styles from '../styles/PurchaseOrder.module.css'
 
-const UpcomingMeals = ({ includeWeekends }) => {
+const UpcomingMeals = ({ includeWeekends, data }) => {
     const [selectedDay, setSelectedDay] = useState("MON");
     const protein = 28, fat = 32, carbs = 82, fibre = 12;
     const totalNutrients = protein + fat + carbs + fibre;
@@ -15,34 +15,48 @@ const UpcomingMeals = ({ includeWeekends }) => {
                 {
                     includeWeekends &&
                     <div>
-                        <div className={`${styles.meal_img} ${selectedDay === "SUN" && styles.selected_day}`} onClick={() => setSelectedDay('SUN')}><Image src='/assets/foodItem.webp' alt='food item' fill /></div>
+                        <div onClick={() => setSelectedDay('SUN')}>
+                            <img src={data?.sunday?.img} alt='food item' className={`${styles.meal_img} ${selectedDay === "SUN" && styles.selected_day}`} />
+                        </div>
                         <p className={styles.day_name}>SUN</p>
                     </div>
                 }
                 <div>
-                    <div className={`${styles.meal_img} ${selectedDay === "MON" && styles.selected_day}`} onClick={() => setSelectedDay('MON')}><Image src='/assets/foodItem.webp' alt='food item' fill /></div>
+                    <div onClick={() => setSelectedDay('MON')}>
+                        <img src={data?.monday?.img} alt='food item' className={`${styles.meal_img} ${selectedDay === "MON" && styles.selected_day}`} />
+                    </div>
                     <p className={styles.day_name}>MON</p>
                 </div>
                 <div>
-                    <div className={`${styles.meal_img} ${selectedDay === "TUE" && styles.selected_day}`} onClick={() => setSelectedDay('TUE')}><Image src='/assets/foodItem.webp' alt='food item' fill /></div>
+                    <div onClick={() => setSelectedDay('TUE')}>
+                        <img src={data?.tuesday?.img} alt='food item' className={`${styles.meal_img} ${selectedDay === "TUE" && styles.selected_day}`} />
+                    </div>
                     <p className={styles.day_name}>TUE</p>
                 </div>
                 <div>
-                    <div className={`${styles.meal_img} ${selectedDay === "WED" && styles.selected_day}`} onClick={() => setSelectedDay('WED')}><Image src='/assets/foodItem.webp' alt='food item' fill /></div>
+                    <div onClick={() => setSelectedDay('WED')}>
+                        <img src={data?.wednesday?.img} alt='food item' className={`${styles.meal_img} ${selectedDay === "WED" && styles.selected_day}`} />
+                    </div>
                     <p className={styles.day_name}>WED</p>
                 </div>
                 <div>
-                    <div className={`${styles.meal_img} ${selectedDay === "THU" && styles.selected_day}`} onClick={() => setSelectedDay('THU')}><Image src='/assets/foodItem.webp' alt='food item' fill /></div>
+                    <div onClick={() => setSelectedDay('THU')}>
+                        <img src={data?.thursday?.img} alt='food item' className={`${styles.meal_img} ${selectedDay === "THU" && styles.selected_day}`} />
+                    </div>
                     <p className={styles.day_name}>THU</p>
                 </div>
                 <div>
-                    <div className={`${styles.meal_img} ${selectedDay === "FRI" && styles.selected_day}`} onClick={() => setSelectedDay('FRI')}><Image src='/assets/foodItem.webp' alt='food item' fill /></div>
+                    <div onClick={() => setSelectedDay('FRI')}>
+                        <img src={data?.friday?.img} alt='food item' className={`${styles.meal_img} ${selectedDay === "FRI" && styles.selected_day}`} />
+                    </div>
                     <p className={styles.day_name}>FRI</p>
                 </div>
                 {
                     includeWeekends &&
                     <div>
-                        <div className={`${styles.meal_img} ${selectedDay === "SAT" && styles.selected_day}`} onClick={() => setSelectedDay('SAT')}><Image src='/assets/foodItem.webp' alt='food item' fill /></div>
+                        <div onClick={() => setSelectedDay('SAT')}>
+                            <img src={data?.saturday?.img} alt='food item' className={`${styles.meal_img} ${selectedDay === "SAT" && styles.selected_day}`} />
+                        </div>
                         <p className={styles.day_name}>SAT</p>
                     </div>
                 }

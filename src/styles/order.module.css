@@ -1,0 +1,92 @@
+.page_container {
+    padding: 2rem 11.6rem;
+}
+
+.items_container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    row-gap: 2rem;
+    column-gap: 2rem;
+}
+
+.food_img {
+    height: 20rem;
+    width: auto;
+    border-radius: 0.5rem;
+}
+
+.d_price, .price {
+    font-size: 1.7rem;
+}
+
+.price {
+    text-decoration: line-through;
+    color: rgb(199, 199, 199);
+}
+
+.percent_off {
+    font-size: 1.4rem;
+    color: rgb(44, 211, 44);
+}
+
+.food_title {
+    font-size: 2rem;
+    margin-top: 1rem;
+}
+
+.cart_btn {
+    padding: 1.3rem 3rem;
+    border: none;
+    outline: none;
+    color: #fff;
+    background-color: rgb(251 126 2);
+    margin: 1.5rem 0;
+    font-size: 1.5rem;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    width: 50%;
+}
+
+.cart_btn:hover {
+    background-color: rgb(251, 114, 2);
+}
+
+.dropdown {
+    padding: 1rem;
+    width: 20%;
+    font-size: 1.6rem;
+    border-color: rgb(221, 221, 221);
+    border-radius: 0.5rem;
+}
+
+.heading {
+    font-size: 3rem;
+    margin: 6rem 0 3rem 0;
+    color: rgb(178 2 2);
+}
+
+.filter_bar {
+    padding: 2rem 0;
+    border-bottom: 1px solid rgb(178 2 2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.checkbox_content {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.checkbox_content > span {
+    font-size: 1.4rem;
+    color: rgb(147, 147, 147);
+}
+
+.checkbox_content > input[type='checkbox'] {
+    accent-color: green;
+    height: 1.5rem;
+    width: 1.5rem;
+}
+

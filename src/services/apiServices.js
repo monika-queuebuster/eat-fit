@@ -111,10 +111,19 @@ export const adminLogin = (adminData) => {
 };
 
 export const addCategory = (categoryData) => {
+  console.log(categoryData, "category");
   return new Promise(async (resolve, reject) => {
     updateAccessToken();
     try {
-      const { data } = await axios.post(`/cms/dropdown/category`, categoryData);
+      const { data } = await axios.post(
+        `/cms/dropdown/category`,
+        categoryData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
       if (data.status == 0) throw data;
       else {
         resolve(data);
@@ -144,7 +153,9 @@ export const deleteCategory = (categoryId) => {
   return new Promise(async (resolve, reject) => {
     updateAccessToken();
     try {
-      const { data } = await axios.delete(`/cms/dropdown/category/:${categoryId}`);
+      const { data } = await axios.delete(
+        `/cms/dropdown/category/${categoryId}`
+      );
       if (data.status == 0) throw data;
       else {
         resolve(data);
@@ -153,13 +164,16 @@ export const deleteCategory = (categoryId) => {
       reject(data.message);
     }
   });
-}
+};
 
 export const updateCategoryItem = (categoryData, categoryId) => {
   return new Promise(async (resolve, reject) => {
     updateAccessToken();
     try {
-      const { data } = await axios.patch(`/cms/dropdown/category/${categoryId}`, categoryData);
+      const { data } = await axios.patch(
+        `/cms/dropdown/category/${categoryId}`,
+        categoryData
+      );
       if (data.status == 0) throw data;
       else {
         resolve(data);
@@ -168,4 +182,242 @@ export const updateCategoryItem = (categoryData, categoryId) => {
       reject(data.message);
     }
   });
-}
+};
+
+// -------meal apis--------
+export const createMealItem = (mealData) => {
+  return new Promise(async (resolve, reject) => {
+    updateAccessToken();
+    try {
+      const { data } = await axios.post(`/cms/meal`, mealData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      if (data.status == 0) throw data;
+      else {
+        resolve(data);
+      }
+    } catch (data) {
+      reject(data.message);
+    }
+  });
+};
+
+export const getMealList = (mealType) => {
+  return new Promise(async (resolve, reject) => {
+    updateAccessToken();
+    const url = `/cms/meal/?meal=${mealType}&pageSize=${500}`;
+    const url2 = `/cms/meal/?pageSize=${100}`;
+    try {
+      const { data } = await axios.get(mealType ? url : url2);
+      if (data.status == 0) throw data;
+      else {
+        resolve(data);
+      }
+    } catch (data) {
+      reject(data.message);
+    }
+  });
+};
+
+export const deleteMeal = (mealSlug) => {
+  return new Promise(async (resolve, reject) => {
+    updateAccessToken();
+    try {
+      const { data } = await axios.delete(`/cms/meal/${mealSlug}`);
+      if (data.status == 0) throw data;
+      else {
+        resolve(data);
+      }
+    } catch (data) {
+      reject(data.message);
+    }
+  });
+};
+
+export const editMealItem = (mealData, slug) => {
+  return new Promise(async (resolve, reject) => {
+    updateAccessToken();
+    try {
+      const { data } = await axios.patch(`/cms/meal/${slug}`, mealData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      if (data.status == 0) throw data;
+      else {
+        resolve(data);
+      }
+    } catch (data) {
+      reject(data.message);
+    }
+  });
+};
+
+export const getSingleMeal = (slug) => {
+  return new Promise(async (resolve, reject) => {
+    updateAccessToken();
+    try {
+      const { data } = await axios.get(`/cms/meal/${slug}`);
+      if (data.status == 0) throw data;
+      else {
+        resolve(data);
+      }
+    } catch (data) {
+      reject(data.message);
+    }
+  });
+};
+
+// --------subscription apis--------
+export const subscription = (subscription) => {
+  return new Promise(async (resolve, reject) => {
+    updateAccessToken();
+    try {
+      const { data } = await axios.post(`/cms/subscription`, subscription, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      if (data.status == 0) throw data;
+      else {
+        resolve(data);
+      }
+    } catch (data) {
+      reject(data.message);
+    }
+  });
+};
+
+export const getAllSubscriptions = (mealType) => {
+  return new Promise(async (resolve, reject) => {
+    updateAccessToken();
+    const url = `/cms/subscription/?meal=${mealType}&pageSize=${500}`;
+    const url2 = `/cms/subscription/`;
+    try {
+      const { data } = await axios.get(mealType ? url : url2);
+      if (data.status == 0) throw data;
+      else {
+        resolve(data);
+      }
+    } catch (data) {
+      reject(data.message);
+    }
+  });
+};
+
+export const editSubscriptionData = (subscription, slug) => {
+  return new Promise(async (resolve, reject) => {
+    updateAccessToken();
+    try {
+      const { data } = await axios.patch(
+        `/cms/subscription/${slug}`,
+        subscription,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      if (data.status == 0) throw data;
+      else {
+        resolve(data);
+      }
+    } catch (data) {
+      reject(data.message);
+    }
+  });
+};
+
+export const deleteSubscription = (slug) => {
+  return new Promise(async (resolve, reject) => {
+    updateAccessToken();
+    try {
+      const { data } = await axios.delete(`/cms/subscription/${slug}`);
+      if (data.status == 0) throw data;
+      else {
+        resolve(data);
+      }
+    } catch (data) {
+      reject(data.message);
+    }
+  });
+};
+
+export const singleSubscription = (slug) => {
+  return new Promise(async (resolve, reject) => {
+    updateAccessToken();
+    try {
+      const { data } = await axios.get(`/cms/subscription/${slug}`);
+      if (data.status == 0) throw data;
+      else {
+        resolve(data);
+      }
+    } catch (data) {
+      reject(data.message);
+    }
+  });
+};
+
+// --------------cart apis--------------
+
+export const addCartItem = (item) => {
+  return new Promise(async (resolve, reject) => {
+    updateAccessToken();
+    try {
+      const { data } = await axios.post(`/front/user/cart`, item);
+      if (data.status == 0) throw data;
+      else {
+        resolve(data);
+      }
+    } catch (data) {
+      reject(data.message);
+    }
+  });
+};
+
+export const getCartItems = () => {
+  return new Promise(async (resolve, reject) => {
+    updateAccessToken();
+    try {
+      const { data } = await axios.get(`/front/user/cart`);
+      if (data.status == 0) throw data;
+      else {
+        resolve(data);
+      }
+    } catch (data) {
+      reject(data.message);
+    }
+  });
+};
+
+export const updateCartItem = (item, cartId) => {
+  return new Promise(async (resolve, reject) => {
+    updateAccessToken();
+    try {
+      const { data } = await axios.put(`/front/user/cart/${cartId}`, item);
+      if (data.status == 0) throw data;
+      else {
+        resolve(data);
+      }
+    } catch (data) {
+      reject(data.message);
+    }
+  });
+};
+
+export const deleteCartItem = (cartId) => {
+  return new Promise(async (resolve, reject) => {
+    updateAccessToken();
+    try {
+      const { data } = await axios.delete(`/front/user/cart/${cartId}`);
+      if (data.status == 0) throw data;
+      else {
+        resolve(data);
+      }
+    } catch (data) {
+      reject(data.message);
+    }
+  });
+};
