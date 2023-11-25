@@ -127,10 +127,10 @@
 
 .item_count {
   background-color: red;
-  padding: 1rem;
+  padding: 0.2rem 0.5rem;
   border-radius: 50%;
   color: #fff;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   position: absolute;
   bottom: 1.5rem;
   right: 0.2rem;

@@ -11,7 +11,7 @@ import { profileUpdate, authorization } from '../services/apiServices';
 import { toast } from 'react-toastify';
 import moment from 'moment';
 
-const dashboard = ({ loginSuccess }) => {
+const dashboard = ({ setCartCount }) => {
 
     const router = useRouter();
     const hiddenFileInput = useRef(null);
@@ -19,7 +19,7 @@ const dashboard = ({ loginSuccess }) => {
         name: '',
         phone: '',
         email: '',
-        workEmail: '',
+        address: '',
         gender: '',
         img: null,
         dob: new Date()
@@ -30,9 +30,8 @@ const dashboard = ({ loginSuccess }) => {
     useEffect(() => {
         authorization().then((res => {
             if (res?.status === 200) {
-                // console.log('---user data---', moment(JSON.parse(res?.user?.dob), 'mm/dd/yyyy').format('l'), moment(res?.user?.dob, 'mm/dd/yyyy').format('l'))
-                console.log("---user data---",res?.user?.img)
-                setUserData({ ...userData, name: res?.user?.name, phone: res?.user?.mobile_no, email: res?.user?.email, workEmail: res?.user?.workEmail, gender: res?.user?.gender, dob: new Date(res?.user?.dob), img: res?.user?.img })
+                setUserData({ ...userData, name: res?.user?.name, phone: res?.user?.mobile_no, email: res?.user?.email, address: res?.user?.address, gender: res?.user?.gender, dob: new Date(res?.user?.dob), img: res?.user?.img })
+                setCartCount(res?.user?.cart_qty)
             }
         })).catch((err) => toast.error(err))
         const userInfo = typeof window !== 'undefined' && localStorage.getItem('userInfo');
@@ -61,6 +60,7 @@ const dashboard = ({ loginSuccess }) => {
         formData.append('name', userData.name);
         formData.append('phone', userData.phone);
         formData.append('email', userData.email);
+        formData.append('address', userData.address);
         formData.append('gender', userData.gender);
         formData.append('dob', moment(userData.dob, 'mm/dd/yyyy').format('l'));
         profileUpdate(formData).then((res) => {
@@ -135,7 +135,6 @@ const dashboard = ({ loginSuccess }) => {
                             </div>
                             <div>
                                 <label>Date Of Birth</label>
-                                {/* <input className={styles.form_input} type='number' /> */}
                                 <DatePicker
                                     selected={userData?.dob}
                                     onChange={(date) => setUserData({ ...userData, dob: date })}
@@ -153,14 +152,14 @@ const dashboard = ({ loginSuccess }) => {
                                 <input className={styles.form_input} type='text' value={userData?.email} onClick={() => (setEmailModal(true), setEmailTitle('Email Adderss'))} />
                             </div>
                             <div>
-                                <label>WORK EMAIL</label>
-                                <input className={styles.form_input} type='text' value={userData?.workEmail} onClick={() => (setEmailModal(true), setEmailTitle('Work Email Adderss'))} />
+                                <label>ADDRESS</label>
+                                <input className={styles.form_input} type='text' value={userData?.address} />
                             </div>
                         </div>
                     </div>
+                    <button className={styles.update_btn} onClick={updateUserInfo}>Update</button>
                 </div>
             </div>
-            <button className={styles.update_btn} onClick={updateUserInfo}>Update</button>
         </>
     )
 }

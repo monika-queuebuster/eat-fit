@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react'
 import styles from '../styles/components/Category.module.css';
 import { toast } from 'react-toastify';
-import { getMealData, editSubscriptionData } from '../services/apiServices';
+import { getMealList, editSubscriptionData } from '../services/apiServices';
 
-const EditSubscription = ({ subsData, setShowmenu, showSubmenu }) => {
+const EditSubscription = ({ subsData, setShowmenu, showSubmenu, setComponentStack, componentStack }) => {
     const [createSubscription, setCreateSubscription] = useState({
         title: subsData?.title,
         description: subsData?.description,
@@ -23,14 +23,24 @@ const EditSubscription = ({ subsData, setShowmenu, showSubmenu }) => {
 
     const [mealData, setMealData] = useState()
 
-
+    console.log('--create subscription--', createSubscription);
     useEffect(() => {
-        getMealData(createSubscription?.meal_type).then((res) => {
+        getMealList(createSubscription?.meal_type).then((res) => {
             if (res?.status === 200) {
                 setMealData(res?.data);
             }
         }).catch((err) => toast.error(err))
     }, [createSubscription?.meal_type])
+
+    useEffect(() => {
+        let newArr = [...componentStack];
+        const componentObj = {
+            menu: "Subscription",
+            submenu: "Edit Subscription"
+        }
+        newArr.push(componentObj);
+        setComponentStack(newArr)
+    }, [])
 
     const foodCategoryList = [
         { name: 'Veg', value: 'Veg' },

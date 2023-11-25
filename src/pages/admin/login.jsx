@@ -21,7 +21,7 @@ const login = () => {
         }
         adminLogin(adminData).then((res)=> {
             if(res?.status === 200) {
-                localStorage.setItem("accessToken", res?.data?.token)
+                localStorage.setItem("adminToken", res?.data?.token)
                 toast.success(res?.message)
                 router.push('/admin/dashboard')
             }

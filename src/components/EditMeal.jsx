@@ -3,7 +3,7 @@ import styles from '../styles/components/Category.module.css';
 import { editMealItem } from '../services/apiServices';
 import { toast } from 'react-toastify';
 
-const EditMeal = ({mealData, setShowmenu, showSubmenu}) => {
+const EditMeal = ({ mealData, setShowmenu, showSubmenu, setComponentStack, componentStack }) => {
   const [editMeal, setEditMeal] = useState({
     title: mealData?.title,
     description: mealData?.description,
@@ -14,6 +14,16 @@ const EditMeal = ({mealData, setShowmenu, showSubmenu}) => {
     category: mealData?.category,
     imgUrl: mealData?.imgUrl,
   })
+
+  useEffect(() => {
+    let newArr = [...componentStack];
+    const componentObj = {
+      menu: "Food Meal",
+      submenu: "Edit Meal"
+    }
+    newArr.push(componentObj);
+    setComponentStack(newArr)
+  }, [])
 
   const categoryListString = typeof window != 'undefined' && localStorage.getItem("categoryList");
   const categoryList = JSON.parse(categoryListString);
@@ -48,12 +58,12 @@ const EditMeal = ({mealData, setShowmenu, showSubmenu}) => {
     formData.append("category", editMeal?.category);
     formData.append("img", editMeal?.imgUrl);
 
-    editMealItem(formData, mealData?.slug).then((res)=> {
-      if(res?.status === 200) {
+    editMealItem(formData, mealData?.slug).then((res) => {
+      if (res?.status === 200) {
         toast.success(res?.message);
-        setShowmenu({...showSubmenu, submenu: "Meal List"})
+        setShowmenu({ ...showSubmenu, submenu: "Meal List" })
       }
-    }).catch((err)=> toast.error(err))
+    }).catch((err) => toast.error(err))
   }
 
   return (
@@ -66,7 +76,7 @@ const EditMeal = ({mealData, setShowmenu, showSubmenu}) => {
         </div>
         <div className={styles.input_container}>
           <label>Meal Type</label>
-          <select name='mealType' className={styles.select_input} value={editMeal?.meal_type} onChange={(e)=> setEditMeal({...editMeal, meal_type: e.target.value})}>
+          <select name='mealType' className={styles.select_input} value={editMeal?.meal_type} onChange={(e) => setEditMeal({ ...editMeal, meal_type: e.target.value })}>
             {
               mealType?.map((ele) => {
                 return (
@@ -90,11 +100,11 @@ const EditMeal = ({mealData, setShowmenu, showSubmenu}) => {
       <div className={styles.form_row}>
         <div className={styles.input_container}>
           <label>Category</label>
-          <select name='category' className={styles.select_input}  value={editMeal?.category} onChange={(e)=> setEditMeal({...editMeal, category: e.target.value})}>
+          <select name='category' className={styles.select_input} value={editMeal?.category} onChange={(e) => setEditMeal({ ...editMeal, category: e.target.value })}>
             {
               categoryList?.map((ele) => {
                 return (
-                  <option onClick={()=> setEditMeal({...editMeal, category: ele?.value})} value={ele?._id}>{ele?.slug}</option>
+                  <option onClick={() => setEditMeal({ ...editMeal, category: ele?.value })} value={ele?._id}>{ele?.slug}</option>
                 )
               })
             }
@@ -102,11 +112,11 @@ const EditMeal = ({mealData, setShowmenu, showSubmenu}) => {
         </div>
         <div className={styles.input_container}>
           <label>Food Category</label>
-          <select name='foodCategory' className={styles.select_input} value={editMeal?.food_category} onChange={(e)=> setEditMeal({...editMeal, food_category: e.target.value})}>
+          <select name='foodCategory' className={styles.select_input} value={editMeal?.food_category} onChange={(e) => setEditMeal({ ...editMeal, food_category: e.target.value })}>
             {
               foodCategoryList?.map((ele) => {
                 return (
-                  <option onClick={()=> setEditMeal({...editMeal, food_category: ele?.value})} value={ele?.value}>{ele?.name}</option>
+                  <option onClick={() => setEditMeal({ ...editMeal, food_category: ele?.value })} value={ele?.value}>{ele?.name}</option>
                 )
               })
             }

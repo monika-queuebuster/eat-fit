@@ -6,13 +6,31 @@ import { SlOptions } from 'react-icons/sl';
 import { IoMdRadioButtonOn } from "react-icons/io";
 import DeleteConfirmation from './common/DeleteConfirmation';
 
-const ViewSubscription = ({ setShowmenu, showSubmenu, setSubsAction, subsAction }) => {
+const ViewSubscription = ({ setShowmenu, showSubmenu, setSubsAction, subsAction, setComponentStack, componentStack }) => {
   const [subscription, setSubscription] = useState();
   const [mealModal, setMealModal] = useState({ active: false, name: "" });
-  const [deleteModal, setDeleteModal] = useState(false)
+  const [remove, setRemove] = useState({ status: false, id: null });
+  const [open, setOpen] = useState(false);
+
 
   useEffect(() => {
     getAllLists();
+  }, [])
+
+  useEffect(() => {
+    if (remove?.status === true) {
+      deleteSubscriptionData(remove?.id)
+    }
+  }, [remove?.status])
+
+  useEffect(() => {
+    let newArr = [...componentStack];
+    const componentObj = {
+      menu: "Subscription",
+      submenu: "Subscription List"
+    }
+    newArr.push(componentObj);
+    setComponentStack(newArr)
   }, [])
 
   const getAllLists = () => {
@@ -24,9 +42,9 @@ const ViewSubscription = ({ setShowmenu, showSubmenu, setSubsAction, subsAction 
     }).catch((err) => toast.error(err));
   }
 
-  const deleteSubscriptionData = (product) => {
+  const deleteSubscriptionData = (slug) => {
     setSubsAction({ ...subsAction, action: "Delete" })
-    deleteSubscription(product?.slug).then((res) => {
+    deleteSubscription(slug).then((res) => {
       if (res?.status === 200) {
         toast.success(res?.message);
         getAllLists();
@@ -40,9 +58,14 @@ const ViewSubscription = ({ setShowmenu, showSubmenu, setSubsAction, subsAction 
     setShowmenu({ ...showSubmenu, menu: "Subscription", submenu: "Edit Category" })
   }
 
+  const openDeleteModal = (slug) => {
+    setOpen(true)
+    setRemove({ ...remove, id: slug })
+  }
+
   return (
     <>
-    <DeleteConfirmation isOpen={deleteModal}  />
+      <DeleteConfirmation isOpen={open} closeModal={() => setOpen(false)} setRemove={setRemove} remove={remove} />
       <div className={styles.category_container}>
         <h1>Subscription List</h1>
         <div className={styles.category_list_container}>
@@ -67,7 +90,7 @@ const ViewSubscription = ({ setShowmenu, showSubmenu, setSubsAction, subsAction 
                   <span className={styles.options} onClick={() => setMealModal({ active: !mealModal?.active, name: ele?.slug })}><SlOptions /></span>
                   <div className={`${(mealModal?.active && mealModal?.name === ele?.slug) ? styles.category_modal : styles.category_modal_hide} `}>
                     <div onClick={() => editSubscriptionData(ele)}>Edit Meal</div>
-                    <div onClick={() => deleteSubscriptionData(ele)}>Delete Meal</div>
+                    <div onClick={() => openDeleteModal(ele?.slug)}>Delete Meal</div>
                   </div>
                 </div>
               )

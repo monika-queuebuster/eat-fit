@@ -8,7 +8,7 @@ import DinnerMenu from "../components/DinnerMenu";
 import { getAllSubscriptions, getCartItems } from "../services/apiServices";
 import { toast } from "react-toastify";
 
-export const Home = ({setCartItems}) => {
+export const Home = ({setCartCount}) => {
   const [activeTab, setActiveTab] = useState("breakfast");
 
   const [foodData, setFoodData] = useState();
@@ -27,13 +27,13 @@ export const Home = ({setCartItems}) => {
       .catch((err) => toast.error(err));
   };
 
-  useEffect(()=> {
-    getCartItems().then((res)=> {
-      if(res?.status === 200) {
-        setCartItems(res?.data?.length)
-      }
-    }).catch((err)=> toast.error(err));
-  },[])
+  // useEffect(()=> {
+  //   getCartItems().then((res)=> {
+  //     if(res?.status === 200) {
+  //       setCartCount(res?.data?.length)
+  //     }
+  //   }).catch((err)=> toast.error(err));
+  // },[]) 
 
   return (
     <>

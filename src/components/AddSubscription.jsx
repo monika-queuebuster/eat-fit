@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react'
 import styles from '../styles/components/Category.module.css';
-import { getMealData, subscription } from '../services/apiServices';
+import { getMealList, subscription } from '../services/apiServices';
 import { toast } from 'react-toastify';
 
 
-const AddSubscription = ({ setShowmenu, showSubmenu }) => {
+const AddSubscription = ({ setShowmenu, showSubmenu, setComponentStack, componentStack }) => {
 
     const [createSubscription, setCreateSubscription] = useState({
         title: '',
@@ -26,12 +26,22 @@ const AddSubscription = ({ setShowmenu, showSubmenu }) => {
     const [mealData, setMealData] = useState()
 
     useEffect(() => {
-        getMealData(createSubscription?.meal_type).then((res) => {
+        getMealList(createSubscription?.meal_type).then((res) => {
             if (res?.status === 200) {
                 setMealData(res?.data);
             }
         }).catch((err) => toast.error(err))
     }, [createSubscription?.meal_type])
+
+    useEffect(() => {
+        let newArr = [...componentStack];
+        const componentObj = {
+            menu: "Subscription",
+            submenu: "Add Subscription"
+        }
+        newArr.push(componentObj);
+        setComponentStack(newArr)
+    }, [])
 
     console.log('---meal data---', mealData);
 
@@ -71,12 +81,12 @@ const AddSubscription = ({ setShowmenu, showSubmenu }) => {
         formData.append("friday", createSubscription?.friday);
         formData.append("saturday", createSubscription?.saturday);
 
-        subscription(formData).then((res)=> {
-            if(res?.status === 200) {
+        subscription(formData).then((res) => {
+            if (res?.status === 200) {
                 toast.success(res?.message)
-                setShowmenu({...showSubmenu, submenu: "Subscription List"})
+                setShowmenu({ ...showSubmenu, submenu: "Subscription List" })
             }
-        }).catch((err)=>toast.error(err))
+        }).catch((err) => toast.error(err))
     }
 
     const handleMealChange = (e) => {
@@ -153,7 +163,7 @@ const AddSubscription = ({ setShowmenu, showSubmenu }) => {
                         {
                             mealData?.map((ele) => {
                                 return (
-                                    <div className={styles.meal_container} onClick={()=>setCreateSubscription({...createSubscription, sunday: ele?._id})}>
+                                    <div className={styles.meal_container} onClick={() => setCreateSubscription({ ...createSubscription, sunday: ele?._id })}>
                                         <img src={ele?.img} alt='meal item' className={`${styles.day_meal} ${ele?._id === createSubscription?.sunday && styles.selected}`} />
                                         <p className={styles.meal_name}>{ele?.title}</p>
                                     </div>
@@ -168,7 +178,7 @@ const AddSubscription = ({ setShowmenu, showSubmenu }) => {
                         {
                             mealData?.map((ele) => {
                                 return (
-                                    <div className={styles.meal_container} onClick={()=>setCreateSubscription({...createSubscription, monday: ele?._id})}>
+                                    <div className={styles.meal_container} onClick={() => setCreateSubscription({ ...createSubscription, monday: ele?._id })}>
                                         <img src={ele?.img} alt='meal item' className={`${styles.day_meal} ${ele?._id === createSubscription?.monday && styles.selected}`} />
                                         <p className={styles.meal_name}>{ele?.title}</p>
                                     </div>
@@ -185,7 +195,7 @@ const AddSubscription = ({ setShowmenu, showSubmenu }) => {
                         {
                             mealData?.map((ele) => {
                                 return (
-                                    <div className={styles.meal_container} onClick={()=>setCreateSubscription({...createSubscription, tuesday: ele?._id})}>
+                                    <div className={styles.meal_container} onClick={() => setCreateSubscription({ ...createSubscription, tuesday: ele?._id })}>
                                         <img src={ele?.img} alt='meal item' className={`${styles.day_meal} ${ele?._id === createSubscription?.tuesday && styles.selected}`} />
                                         <p className={styles.meal_name}>{ele?.title}</p>
                                     </div>
@@ -200,7 +210,7 @@ const AddSubscription = ({ setShowmenu, showSubmenu }) => {
                         {
                             mealData?.map((ele) => {
                                 return (
-                                    <div className={styles.meal_container} onClick={()=>setCreateSubscription({...createSubscription, wednesday: ele?._id})}>
+                                    <div className={styles.meal_container} onClick={() => setCreateSubscription({ ...createSubscription, wednesday: ele?._id })}>
                                         <img src={ele?.img} alt='meal item' className={`${styles.day_meal} ${ele?._id === createSubscription?.wednesday && styles.selected}`} />
                                         <p className={styles.meal_name}>{ele?.title}</p>
                                     </div>
@@ -217,7 +227,7 @@ const AddSubscription = ({ setShowmenu, showSubmenu }) => {
                         {
                             mealData?.map((ele) => {
                                 return (
-                                    <div className={styles.meal_container} onClick={()=>setCreateSubscription({...createSubscription, thursday: ele?._id})}>
+                                    <div className={styles.meal_container} onClick={() => setCreateSubscription({ ...createSubscription, thursday: ele?._id })}>
                                         <img src={ele?.img} alt='meal item' className={`${styles.day_meal} ${ele?._id === createSubscription?.thursday && styles.selected}`} />
                                         <p className={styles.meal_name}>{ele?.title}</p>
                                     </div>
@@ -232,7 +242,7 @@ const AddSubscription = ({ setShowmenu, showSubmenu }) => {
                         {
                             mealData?.map((ele) => {
                                 return (
-                                    <div className={styles.meal_container}  onClick={()=>setCreateSubscription({...createSubscription, friday: ele?._id})}>
+                                    <div className={styles.meal_container} onClick={() => setCreateSubscription({ ...createSubscription, friday: ele?._id })}>
                                         <img src={ele?.img} alt='meal item' className={`${styles.day_meal} ${ele?._id === createSubscription?.friday && styles.selected}`} />
                                         <p className={styles.meal_name}>{ele?.title}</p>
                                     </div>
@@ -248,7 +258,7 @@ const AddSubscription = ({ setShowmenu, showSubmenu }) => {
                     {
                         mealData?.map((ele) => {
                             return (
-                                <div className={styles.meal_container} onClick={()=>setCreateSubscription({...createSubscription, saturday: ele?._id})}>
+                                <div className={styles.meal_container} onClick={() => setCreateSubscription({ ...createSubscription, saturday: ele?._id })}>
                                     <img src={ele?.img} alt='meal item' className={`${styles.day_meal} ${ele?._id === createSubscription?.saturday && styles.selected}`} />
                                     <p className={styles.meal_name}>{ele?.title}</p>
                                 </div>

@@ -4,6 +4,7 @@ import styles from '../../styles/components/common/EmailModal.module.css'
 import { RxCross2 } from 'react-icons/rx';
 import { addCartItem } from '../../services/apiServices';
 import { toast } from 'react-toastify';
+import { useRouter } from 'next/router';
 
 
 const customStyles = {
@@ -15,6 +16,8 @@ const customStyles = {
 
 const CartModal = ({ isOpen, closeModal, selectedItem, setSelectedItem, quantity, setQuantity }) => {
 
+    const router = useRouter();
+
     const addToCart = () => {
         const item = {
             meal_id: selectedItem?._id,
@@ -24,6 +27,7 @@ const CartModal = ({ isOpen, closeModal, selectedItem, setSelectedItem, quantity
         addCartItem(item).then((res) => {
             if (res?.status === 200) {
                 toast.success(res?.message);
+                router.push('/cart');
                 closeModal()
             }
         }).catch((err) => toast.error(err))
