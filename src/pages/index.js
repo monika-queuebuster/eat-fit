@@ -98,7 +98,10 @@ export const Home = ({ quantity, setQuantity }) => {
             <div className={styles.category_list}>
               {categories?.map((ele) => {
                 return (
-                  <div className={styles.category_item} onClick={()=> router.push(`/category/${ele?.slug}`)}>
+                  <div
+                    className={styles.category_item}
+                    onClick={() => router.push(`/category/${ele?.slug}`)}
+                  >
                     <img
                       src={ele?.imgUrl}
                       alt="category"
@@ -115,7 +118,14 @@ export const Home = ({ quantity, setQuantity }) => {
             <div style={{ marginTop: "4rem" }}>
               <h3 className={styles.meal_type}>
                 Single Meal{" "}
-                <span className={styles.view_all_text}>View All</span>
+                {singleMeal?.length > 4 && (
+                  <span
+                    className={styles.view_all_text}
+                    onClick={() => router.push("/view/single-meal")}
+                  >
+                    View All
+                  </span>
+                )}
               </h3>
               <div className={styles.meal_container}>
                 {singleMeal?.map((ele) => {
@@ -160,7 +170,17 @@ export const Home = ({ quantity, setQuantity }) => {
 
           {packedMeal && (
             <div style={{ marginTop: "4rem" }}>
-              <h3 className={styles.meal_type}>Packed Meal</h3>
+              <h3 className={styles.meal_type}>
+                Packed Meal{" "}
+                {packedMeal?.length > 4 && (
+                  <span
+                    className={styles.view_all_text}
+                    onClick={() => router.push("/view/packed-meal")}
+                  >
+                    View All
+                  </span>
+                )}
+              </h3>
               <div className={styles.meal_container}>
                 {packedMeal?.map((ele) => {
                   return (
@@ -204,7 +224,17 @@ export const Home = ({ quantity, setQuantity }) => {
 
           {tiffinData && (
             <div style={{ marginTop: "4rem" }}>
-              <h3 className={styles.meal_type}>Tiffin</h3>
+              <h3 className={styles.meal_type}>
+                Tiffin
+                {tiffinData?.length > 4 && (
+                  <span
+                    className={styles.view_all_text}
+                    onClick={() => router.push("/view/tiffin-meal")}
+                  >
+                    View All
+                  </span>
+                )}
+              </h3>
               <div className={styles.meal_container}>
                 {tiffinData?.map((ele) => {
                   return (
