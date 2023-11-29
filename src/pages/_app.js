@@ -12,7 +12,8 @@ export default function App({ Component, pageProps }) {
   const [loginModal, setLoginModal] = useState(false);
   const [loginSuccess, setLoginSuccess] = useState(false);
   const [quantity, setQuantity] = useState(1);
-  const [cartItems, setCartItems] = useState(0);
+  const [cartCount, setCartCount] = useState(0);
+  console.log('---cartCount---', cartCount)
 
   const router = useRouter();
 
@@ -40,6 +41,7 @@ export default function App({ Component, pageProps }) {
         setLoginModal={setLoginModal}
         loginSuccess={loginSuccess}
         setLoginSuccess={setLoginSuccess}
+        cartCount={cartCount}
       />
       <LoginModal
         isOpen={loginModal}
@@ -54,8 +56,8 @@ export default function App({ Component, pageProps }) {
         loginSuccess={loginSuccess}
         setQuantity={setQuantity}
         quantity={quantity}
-        setCartItems={setCartItems}
-        cartItems={cartItems}
+        setCartCount={setCartCount}
+        cartCount={cartCount}
       />
       {(router.asPath != "/dashboard" && router.asPath != "/admin/dashboard") && <Footer />}
       <MobileNav />

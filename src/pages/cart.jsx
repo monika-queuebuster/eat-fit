@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import { RiDeleteBin6Line } from "react-icons/ri";
 import DeleteConfirmation from '../components/common/DeleteConfirmation';
 
-const cart = () => {
+const cart = ({setCartCount}) => {
 
     const [cartItems, setCartItems] = useState();
     const [open, setOpen] = useState(false);
@@ -30,6 +30,7 @@ const cart = () => {
         getCartItems().then((res) => {
             if (res?.status === 200) {
                 setCartItems(res?.data)
+                setCartCount(res?.data?.length)
             }
         }).catch((err) => toast.error(err));
     }

@@ -143,6 +143,7 @@
   color: #fff;
   background-image: linear-gradient(101deg, rgb(251 126 2), rgb(178 2 2));
   box-shadow: rgb(251 126 2 / 40%) 0px 3px 16px 0px;
+  margin-top: 4rem;
 }
 
 @media screen and (max-width: 540px) {

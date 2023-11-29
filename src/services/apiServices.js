@@ -18,6 +18,14 @@ const updateAccessToken = () => {
   }
 };
 
+const updateAdminToken = () => {
+  const adminToken =
+    typeof window !== "undefined" && localStorage.getItem("adminToken");
+  if (adminToken) {
+    axios.defaults.headers.common["auth-token"] = adminToken;
+  }
+};
+
 export const userLogin = (userData) => {
   return new Promise(async (resolve, reject) => {
     try {
@@ -113,7 +121,7 @@ export const adminLogin = (adminData) => {
 export const addCategory = (categoryData) => {
   console.log(categoryData, "category");
   return new Promise(async (resolve, reject) => {
-    updateAccessToken();
+    updateAdminToken();
     try {
       const { data } = await axios.post(
         `/cms/dropdown/category`,
@@ -136,7 +144,7 @@ export const addCategory = (categoryData) => {
 
 export const getCategories = () => {
   return new Promise(async (resolve, reject) => {
-    updateAccessToken();
+    updateAdminToken();
     try {
       const { data } = await axios.get(`/cms/dropdown/category/`);
       if (data.status == 0) throw data;
@@ -151,7 +159,7 @@ export const getCategories = () => {
 
 export const deleteCategory = (categoryId) => {
   return new Promise(async (resolve, reject) => {
-    updateAccessToken();
+    updateAdminToken();
     try {
       const { data } = await axios.delete(
         `/cms/dropdown/category/${categoryId}`
@@ -168,7 +176,7 @@ export const deleteCategory = (categoryId) => {
 
 export const updateCategoryItem = (categoryData, categoryId) => {
   return new Promise(async (resolve, reject) => {
-    updateAccessToken();
+    updateAdminToken();
     try {
       const { data } = await axios.patch(
         `/cms/dropdown/category/${categoryId}`,
@@ -187,7 +195,7 @@ export const updateCategoryItem = (categoryData, categoryId) => {
 // -------meal apis--------
 export const createMealItem = (mealData) => {
   return new Promise(async (resolve, reject) => {
-    updateAccessToken();
+    updateAdminToken();
     try {
       const { data } = await axios.post(`/cms/meal`, mealData, {
         headers: {
@@ -206,7 +214,7 @@ export const createMealItem = (mealData) => {
 
 export const getMealList = (mealType) => {
   return new Promise(async (resolve, reject) => {
-    updateAccessToken();
+    updateAdminToken();
     const url = `/cms/meal/?meal=${mealType}&pageSize=${500}`;
     const url2 = `/cms/meal/?pageSize=${100}`;
     try {
@@ -223,7 +231,7 @@ export const getMealList = (mealType) => {
 
 export const deleteMeal = (mealSlug) => {
   return new Promise(async (resolve, reject) => {
-    updateAccessToken();
+    updateAdminToken();
     try {
       const { data } = await axios.delete(`/cms/meal/${mealSlug}`);
       if (data.status == 0) throw data;
@@ -238,7 +246,7 @@ export const deleteMeal = (mealSlug) => {
 
 export const editMealItem = (mealData, slug) => {
   return new Promise(async (resolve, reject) => {
-    updateAccessToken();
+    updateAdminToken();
     try {
       const { data } = await axios.patch(`/cms/meal/${slug}`, mealData, {
         headers: {
@@ -257,7 +265,7 @@ export const editMealItem = (mealData, slug) => {
 
 export const getSingleMeal = (slug) => {
   return new Promise(async (resolve, reject) => {
-    updateAccessToken();
+    updateAdminToken();
     try {
       const { data } = await axios.get(`/cms/meal/${slug}`);
       if (data.status == 0) throw data;
@@ -273,7 +281,7 @@ export const getSingleMeal = (slug) => {
 // --------subscription apis--------
 export const subscription = (subscription) => {
   return new Promise(async (resolve, reject) => {
-    updateAccessToken();
+    updateAdminToken();
     try {
       const { data } = await axios.post(`/cms/subscription`, subscription, {
         headers: {
@@ -292,7 +300,7 @@ export const subscription = (subscription) => {
 
 export const getAllSubscriptions = (mealType) => {
   return new Promise(async (resolve, reject) => {
-    updateAccessToken();
+    updateAdminToken();
     const url = `/cms/subscription/?meal=${mealType}&pageSize=${500}`;
     const url2 = `/cms/subscription/`;
     try {
@@ -309,7 +317,7 @@ export const getAllSubscriptions = (mealType) => {
 
 export const editSubscriptionData = (subscription, slug) => {
   return new Promise(async (resolve, reject) => {
-    updateAccessToken();
+    updateAdminToken();
     try {
       const { data } = await axios.patch(
         `/cms/subscription/${slug}`,
@@ -332,7 +340,7 @@ export const editSubscriptionData = (subscription, slug) => {
 
 export const deleteSubscription = (slug) => {
   return new Promise(async (resolve, reject) => {
-    updateAccessToken();
+    updateAdminToken();
     try {
       const { data } = await axios.delete(`/cms/subscription/${slug}`);
       if (data.status == 0) throw data;
@@ -347,7 +355,7 @@ export const deleteSubscription = (slug) => {
 
 export const singleSubscription = (slug) => {
   return new Promise(async (resolve, reject) => {
-    updateAccessToken();
+    updateAdminToken();
     try {
       const { data } = await axios.get(`/cms/subscription/${slug}`);
       if (data.status == 0) throw data;
@@ -412,6 +420,120 @@ export const deleteCartItem = (cartId) => {
     updateAccessToken();
     try {
       const { data } = await axios.delete(`/front/user/cart/${cartId}`);
+      if (data.status == 0) throw data;
+      else {
+        resolve(data);
+      }
+    } catch (data) {
+      reject(data.message);
+    }
+  });
+};
+
+// -------tiffin-------
+
+export const createTiffin = (tiffinData) => {
+  return new Promise(async (resolve, reject) => {
+    updateAdminToken();
+    try {
+      const { data } = await axios.post(`/cms/tiffin`, tiffinData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      if (data.status == 0) throw data;
+      else {
+        resolve(data);
+      }
+    } catch (data) {
+      reject(data.message);
+    }
+  });
+};
+
+export const getTiffins = () => {
+  return new Promise(async (resolve, reject) => {
+    updateAdminToken();
+    try {
+      const { data } = await axios.get(`/cms/tiffin`);
+      if (data.status == 0) throw data;
+      else {
+        resolve(data);
+      }
+    } catch (data) {
+      reject(data.message);
+    }
+  });
+};
+
+export const updateTiffin = (tiffinData, slug) => {
+  return new Promise(async (resolve, reject) => {
+    updateAdminToken();
+    try {
+      const { data } = await axios.put(`/cms/tiffin/${slug}`, tiffinData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      if (data.status == 0) throw data;
+      else {
+        resolve(data);
+      }
+    } catch (data) {
+      reject(data.message);
+    }
+  });
+};
+
+export const deleteTiffin = (slug) => {
+  return new Promise(async (resolve, reject) => {
+    updateAccessToken();
+    try {
+      const { data } = await axios.delete(`/cms/tiffin/${slug}`);
+      if (data.status == 0) throw data;
+      else {
+        resolve(data);
+      }
+    } catch (data) {
+      reject(data.message);
+    }
+  });
+};
+
+// ----------dashboard apis-----------
+
+export const getSingleMeals = () => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const { data } = await axios.get(`/cms/meal?mealfor=single`);
+      if (data.status == 0) throw data;
+      else {
+        resolve(data);
+      }
+    } catch (data) {
+      reject(data.message);
+    }
+  });
+};
+
+export const packedMeals = () => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const { data } = await axios.get(`/cms/meal?mealfor=multiple`);
+      if (data.status == 0) throw data;
+      else {
+        resolve(data);
+      }
+    } catch (data) {
+      reject(data.message);
+    }
+  });
+};
+
+export const categoryMeals = (slug) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const { data } = await axios.get(`/cms/dropdown?category=${slug}`);
       if (data.status == 0) throw data;
       else {
         resolve(data);

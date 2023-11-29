@@ -1,13 +1,24 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styles from '../styles/components/Category.module.css';
 import { addCategory } from '../services/apiServices';
 import { toast } from 'react-toastify';
 
-const AddCategory = ({setShowmenu, showSubmenu}) => {
+const AddCategory = ({setShowmenu, showSubmenu, setComponentStack, componentStack }) => {
     const [createCategory, setCreateCategory] = useState({
         title: '',
         imgUrl: null,
     })
+
+    useEffect(()=> {
+        let newArr = [...componentStack];
+        const componentObj = {
+            menu: "Category",
+            submenu: "Add Category"
+        }
+        newArr.push(componentObj);
+        setComponentStack(newArr)
+    },[])
+
     const hiddenFileInput = useRef(null);
 
     const handleFileChange = (e) => {

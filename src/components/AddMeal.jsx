@@ -1,12 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react'
 import styles from '../styles/components/Category.module.css';
-import { createMealItem } from '../services/apiServices';
+import { createMealItem, getCategories } from '../services/apiServices';
 import { toast } from 'react-toastify';
 
-const AddMeal = ({setShowmenu, showSubmenu}) => {
-  const categoryListString = typeof window != 'undefined' && localStorage.getItem("categoryList");
-  const categoryList = JSON.parse(categoryListString);
+const AddMeal = ({ setShowmenu, showSubmenu, setComponentStack, componentStack }) => {
 
+  const [categoryData, setCategory] = useState();
   const [createMeal, setCreateMeal] = useState({
     title: '',
     description: '',
@@ -16,13 +15,22 @@ const AddMeal = ({setShowmenu, showSubmenu}) => {
     meal_type: 'breakfast',
     category: null,
     imgUrl: null,
+    meal_for: "single",
   })
 
-  useEffect(()=> {
-    if(categoryList) {
-      setCreateMeal({...createMeal, category: categoryList[0]?._id})
+  useEffect(() => {
+    getCategoryList();
+  }, [])
+
+  useEffect(() => {
+    let newArr = [...componentStack];
+    const componentObj = {
+      menu: "Food Meal",
+      submenu: "Add Meal"
     }
-  },[categoryList])
+    newArr.push(componentObj);
+    setComponentStack(newArr)
+  }, [])
 
   const foodCategoryList = [
     { name: 'Veg', value: 'Veg' },
@@ -43,6 +51,15 @@ const AddMeal = ({setShowmenu, showSubmenu}) => {
     setCreateMeal({ ...createMeal, imgUrl: e.target.files[0] })
   }
 
+  const getCategoryList = () => {
+    getCategories().then((res) => {
+      if (res?.status === 200) {
+        setCategory(res?.data)
+        setCreateMeal({...createMeal, category: res?.data[0]._id})
+      }
+    }).catch((err) => toast.error(err));
+  }
+
   const handleFormSubmit = () => {
     const formData = new FormData();
     formData.append("title", createMeal?.title);
@@ -53,13 +70,14 @@ const AddMeal = ({setShowmenu, showSubmenu}) => {
     formData.append("meal_type", createMeal?.meal_type);
     formData.append("category", createMeal?.category);
     formData.append("img", createMeal?.imgUrl);
+    formData.append("meal_for", createMeal?.meal_for);
 
-    createMealItem(formData).then((res)=> {
-      if(res?.status === 200) {
+    createMealItem(formData).then((res) => {
+      if (res?.status === 200) {
         toast.success(res?.message);
-        setShowmenu({...showSubmenu, submenu: "Meal List"})
+        setShowmenu({ ...showSubmenu, submenu: "Meal List" })
       }
-    }).catch((err)=> toast.error(err))
+    }).catch((err) => toast.error(err))
   }
 
   return (
@@ -71,16 +89,8 @@ const AddMeal = ({setShowmenu, showSubmenu}) => {
           <input className={styles.form_input} type='text' value={createMeal?.title} onChange={(e) => setCreateMeal({ ...createMeal, title: e.target.value })} />
         </div>
         <div className={styles.input_container}>
-          <label>Meal Type</label>
-          <select name='meal' className={styles.select_input} value={createMeal?.meal_type} onChange={(e)=> setCreateMeal({...createMeal, meal_type: e.target.value})}>
-            {
-              mealType?.map((ele) => {
-                return (
-                  <option value={ele?.value}>{ele?.name}</option>
-                )
-              })
-            }
-          </select>
+          <label>Description</label>
+          <input className={styles.form_input} value={createMeal?.description} rows={3} onChange={(e) => setCreateMeal({ ...createMeal, description: e.target.value })} />
         </div>
       </div>
       <div className={styles.form_row}>
@@ -96,9 +106,9 @@ const AddMeal = ({setShowmenu, showSubmenu}) => {
       <div className={styles.form_row}>
         <div className={styles.input_container}>
           <label>Category</label>
-          <select name='category' className={styles.select_input} value={createMeal?.category} onChange={(e)=> setCreateMeal({...createMeal, category: e.target.value})}>
+          <select name='category' className={styles.select_input} value={createMeal?.category} onChange={(e) => setCreateMeal({ ...createMeal, category: e.target.value })}>
             {
-              categoryList?.map((ele) => {
+              categoryData?.map((ele) => {
                 return (
                   <option value={ele?._id}>{ele?.slug}</option>
                 )
@@ -108,9 +118,30 @@ const AddMeal = ({setShowmenu, showSubmenu}) => {
         </div>
         <div className={styles.input_container}>
           <label>Food Category</label>
-          <select name='foodCategory' value={createMeal?.food_category} onChange={(e)=> setCreateMeal({...createMeal, food_category: e.target.value})} className={styles.select_input}>
+          <select name='foodCategory' value={createMeal?.food_category} onChange={(e) => setCreateMeal({ ...createMeal, food_category: e.target.value })} className={styles.select_input}>
             {
               foodCategoryList?.map((ele) => {
+                return (
+                  <option value={ele?.value}>{ele?.name}</option>
+                )
+              })
+            }
+          </select>
+        </div>
+      </div>
+      <div className={styles.form_row}>
+        <div className={styles.input_container}>
+          <label>Meal For</label>
+          <select name='meal' className={styles.select_input} value={createMeal?.meal_for} onChange={(e) => setCreateMeal({ ...createMeal, meal_for: e.target.value })}>
+            <option value='single'>Single</option>
+            <option value='multiple'>Multiple</option>
+          </select>
+        </div>
+        <div className={styles.input_container}>
+          <label>Meal Type</label>
+          <select name='meal' className={styles.select_input} value={createMeal?.meal_type} onChange={(e) => setCreateMeal({ ...createMeal, meal_type: e.target.value })}>
+            {
+              mealType?.map((ele) => {
                 return (
                   <option value={ele?.value}>{ele?.name}</option>
                 )
@@ -131,10 +162,6 @@ const AddMeal = ({setShowmenu, showSubmenu}) => {
             />
             Select Image
           </button>
-        </div>
-        <div className={styles.input_container}>
-          <label>Description</label>
-          <textarea className={styles.form_textarea} value={createMeal?.description} rows={3} onChange={(e) => setCreateMeal({ ...createMeal, description: e.target.value })} />
         </div>
       </div>
       <button onClick={handleFormSubmit} className={styles.submit_btn}>Submit</button>

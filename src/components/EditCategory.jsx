@@ -4,16 +4,25 @@ import { updateCategoryItem } from '../services/apiServices';
 import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
 
-const EditCategory = ({categoryData, setShowmenu, showSubmenu}) => {
+const EditCategory = ({ categoryData, setShowmenu, showSubmenu, setComponentStack, componentStack }) => {
     const [updateCategory, setUpdatecategory] = useState({
         title: '',
         imgUrl: null,
     })
 
+    useEffect(() => {
+        setUpdatecategory({ title: categoryData?.slug, imgUrl: categoryData?.imgUrl })
+    }, [categoryData])
 
-    useEffect(()=> {
-        setUpdatecategory({title: categoryData?.slug, imgUrl: categoryData?.imgUrl})
-    },[categoryData])
+    useEffect(() => {
+        let newArr = [...componentStack];
+        const componentObj = {
+            menu: "Category",
+            submenu: "Edit Category"
+        }
+        newArr.push(componentObj);
+        setComponentStack(newArr)
+    }, []) 
 
     const hiddenFileInput = useRef(null);
 
@@ -25,12 +34,12 @@ const EditCategory = ({categoryData, setShowmenu, showSubmenu}) => {
         const formData = new FormData();
         formData.append('title', updateCategory?.title);
         formData.append('imgUrl', updateCategory?.imgUrl);
-        updateCategoryItem(formData, categoryData?.slug).then((res)=> {
-            if(res?.status === 200) {
+        updateCategoryItem(formData, categoryData?.slug).then((res) => {
+            if (res?.status === 200) {
                 toast.success(res?.message);
-                setShowmenu({...showSubmenu, submenu: "Category List"})
+                setShowmenu({ ...showSubmenu, submenu: "Category List" })
             }
-        }).catch((err)=> toast.error(err));
+        }).catch((err) => toast.error(err));
     }
 
     return (

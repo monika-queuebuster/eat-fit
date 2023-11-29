@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { deleteSubscription, getAllSubscriptions } from '../services/apiServices';
+import { deleteTiffin, getTiffins } from '../services/apiServices';
 import styles from '../styles/components/Category.module.css';
 import { toast } from 'react-toastify';
 import { SlOptions } from 'react-icons/sl';
 import { IoMdRadioButtonOn } from "react-icons/io";
 import DeleteConfirmation from './common/DeleteConfirmation';
 
-const ViewSubscription = ({ setShowmenu, showSubmenu, setSubsAction, subsAction, setComponentStack, componentStack }) => {
-  const [subscription, setSubscription] = useState();
+const ViewTiffin = ({ setShowmenu, showSubmenu, setTiffinData, tiffinData, setComponentStack, componentStack }) => {
+  const [tiffin, setTiffin] = useState();
   const [mealModal, setMealModal] = useState({ active: false, name: "" });
   const [remove, setRemove] = useState({ status: false, id: null });
   const [open, setOpen] = useState(false);
@@ -15,15 +15,6 @@ const ViewSubscription = ({ setShowmenu, showSubmenu, setSubsAction, subsAction,
 
   useEffect(() => {
     getAllLists();
-  }, [])
-
-  useEffect(() => {
-    if (remove?.status === true) {
-      deleteSubscriptionData(remove?.id)
-    }
-  }, [remove?.status])
-
-  useEffect(() => {
     let newArr = [...componentStack];
     const componentObj = {
       menu: "Subscription",
@@ -33,18 +24,24 @@ const ViewSubscription = ({ setShowmenu, showSubmenu, setSubsAction, subsAction,
     setComponentStack(newArr)
   }, [])
 
+  useEffect(() => {
+    if (remove?.status === true) {
+      deletTiffin(remove?.id)
+    }
+  }, [remove?.status])
+
   const getAllLists = () => {
-    getAllSubscriptions().then((res) => {
-      if (res?.status === 200) {
-        console.log(res);
-        setSubscription(res?.data)
+    getTiffins().then((res)=> {
+      if(res?.status === 200) {
+        setTiffin(res?.data);
       }
-    }).catch((err) => toast.error(err));
+    }).catch((err)=> toast.error(err));
   }
 
-  const deleteSubscriptionData = (slug) => {
-    setSubsAction({ ...subsAction, action: "Delete" })
-    deleteSubscription(slug).then((res) => {
+  const deletTiffin = (slug) => {
+    setTiffinData({ ...tiffinData, action: "Delete" })
+    // console.log('--deleted--')
+    deleteTiffin(slug).then((res) => {
       if (res?.status === 200) {
         toast.success(res?.message);
         getAllLists();
@@ -52,10 +49,9 @@ const ViewSubscription = ({ setShowmenu, showSubmenu, setSubsAction, subsAction,
     }).catch((err) => toast.error(err))
   }
 
-  const editSubscriptionData = (product) => {
-    console.log('--ele--', product)
-    setSubsAction({ action: "Edit", data: product })
-    setShowmenu({ ...showSubmenu, menu: "Subscription", submenu: "Edit Subscription" })
+  const editTiffinData = (product) => {
+    setTiffinData({ action: "Edit", data: product })
+    setShowmenu({ ...showSubmenu, menu: "Tiffin", submenu: "Edit Tiffin" })
   }
 
   const openDeleteModal = (slug) => {
@@ -70,11 +66,11 @@ const ViewSubscription = ({ setShowmenu, showSubmenu, setSubsAction, subsAction,
         <h1>Subscription List</h1>
         <div className={styles.category_list_container}>
           {
-            subscription?.map((ele, idx) => {
+            tiffin?.map((ele, idx) => {
               return (
-                <div key={ele?._id} className={styles.subscription}>
-                  <div style={{ height: '25rem', display: 'flex', alignItems: 'center' }}><img src={ele?.img} alt='subscription image' className={styles.category_img} /></div>
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '2rem' }}>
+                <div key={ele?._id} className={styles.tiffin}>
+                  <div style={{ height: '25rem', display: 'flex', alignItems: 'center' }}><img src={ele?.img} alt='tiffin image' className={styles.category_img} /></div>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '2rem', marginTop: '2rem' }}>
                     <span><IoMdRadioButtonOn className={`${ele?.food_category === "Veg" ? styles.veg_sign : ele?.food_category === "Non-Veg" && styles.nonveg_sign} ${styles.category_sign}`} /></span>
                     <p className={styles.category_name}>{ele?.title}</p>
                   </div>
@@ -89,7 +85,7 @@ const ViewSubscription = ({ setShowmenu, showSubmenu, setSubsAction, subsAction,
 
                   <span className={styles.options} onClick={() => setMealModal({ active: !mealModal?.active, name: ele?.slug })}><SlOptions /></span>
                   <div className={`${(mealModal?.active && mealModal?.name === ele?.slug) ? styles.category_modal : styles.category_modal_hide} `}>
-                    <div onClick={() => editSubscriptionData(ele)}>Edit Meal</div>
+                    <div onClick={() => editTiffinData(ele)}>Edit Meal</div>
                     <div onClick={() => openDeleteModal(ele?.slug)}>Delete Meal</div>
                   </div>
                 </div>
@@ -102,4 +98,4 @@ const ViewSubscription = ({ setShowmenu, showSubmenu, setSubsAction, subsAction,
   )
 }
 
-export default ViewSubscription
+export default ViewTiffin
