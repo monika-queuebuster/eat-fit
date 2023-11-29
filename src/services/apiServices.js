@@ -11,18 +11,20 @@ const getUserId = () => {
 };
 
 const updateAccessToken = () => {
-  const accessToken = typeof window !== "undefined" && localStorage.getItem("accessToken");
+  const accessToken =
+    typeof window !== "undefined" && localStorage.getItem("accessToken");
   if (accessToken) {
     axios.defaults.headers.common["auth-token"] = accessToken;
   }
 };
 
 const updateAdminToken = () => {
-  const adminToken = typeof window !== "undefined" && localStorage.getItem("adminToken");
+  const adminToken =
+    typeof window !== "undefined" && localStorage.getItem("adminToken");
   if (adminToken) {
     axios.defaults.headers.common["auth-token"] = adminToken;
   }
-}
+};
 
 export const userLogin = (userData) => {
   return new Promise(async (resolve, reject) => {
@@ -418,6 +420,120 @@ export const deleteCartItem = (cartId) => {
     updateAccessToken();
     try {
       const { data } = await axios.delete(`/front/user/cart/${cartId}`);
+      if (data.status == 0) throw data;
+      else {
+        resolve(data);
+      }
+    } catch (data) {
+      reject(data.message);
+    }
+  });
+};
+
+// -------tiffin-------
+
+export const createTiffin = (tiffinData) => {
+  return new Promise(async (resolve, reject) => {
+    updateAdminToken();
+    try {
+      const { data } = await axios.post(`/cms/tiffin`, tiffinData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      if (data.status == 0) throw data;
+      else {
+        resolve(data);
+      }
+    } catch (data) {
+      reject(data.message);
+    }
+  });
+};
+
+export const getTiffins = () => {
+  return new Promise(async (resolve, reject) => {
+    updateAdminToken();
+    try {
+      const { data } = await axios.get(`/cms/tiffin`);
+      if (data.status == 0) throw data;
+      else {
+        resolve(data);
+      }
+    } catch (data) {
+      reject(data.message);
+    }
+  });
+};
+
+export const updateTiffin = (tiffinData, slug) => {
+  return new Promise(async (resolve, reject) => {
+    updateAdminToken();
+    try {
+      const { data } = await axios.put(`/cms/tiffin/${slug}`, tiffinData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      if (data.status == 0) throw data;
+      else {
+        resolve(data);
+      }
+    } catch (data) {
+      reject(data.message);
+    }
+  });
+};
+
+export const deleteTiffin = (slug) => {
+  return new Promise(async (resolve, reject) => {
+    updateAccessToken();
+    try {
+      const { data } = await axios.delete(`/cms/tiffin/${slug}`);
+      if (data.status == 0) throw data;
+      else {
+        resolve(data);
+      }
+    } catch (data) {
+      reject(data.message);
+    }
+  });
+};
+
+// ----------dashboard apis-----------
+
+export const getSingleMeals = () => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const { data } = await axios.get(`/cms/meal?mealfor=single`);
+      if (data.status == 0) throw data;
+      else {
+        resolve(data);
+      }
+    } catch (data) {
+      reject(data.message);
+    }
+  });
+};
+
+export const packedMeals = () => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const { data } = await axios.get(`/cms/meal?mealfor=multiple`);
+      if (data.status == 0) throw data;
+      else {
+        resolve(data);
+      }
+    } catch (data) {
+      reject(data.message);
+    }
+  });
+};
+
+export const categoryMeals = (slug) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const { data } = await axios.get(`/cms/dropdown?category=${slug}`);
       if (data.status == 0) throw data;
       else {
         resolve(data);

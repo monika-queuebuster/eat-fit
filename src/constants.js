@@ -216,7 +216,45 @@ export const adminSidebar = [
     },
     {
         id: 5,
+        item: "Tiffin",
+        subItems: ["Add Tiffin", "Tiffin List"]
+    },
+    {
+        id: 6,
         item: "User",
         subItems: ["Registered User", "Subscribed User"]
     }
+]
+
+export const aboutusContent = [
+    {
+        id: 0,
+        title: "Ghar Ka Khana",
+        desc: "Delicious Home Style food with minimal oil / masalas"
+    },
+    {
+        id: 1,
+        title: "On Time Delivery",
+        desc: "Delicious Home Style food with minimal oil / masalas"
+    },
+    {
+        id: 2,
+        title: "Trained Cook",
+        desc: "Delicious Home Style food with minimal oil / masalas"
+    },
+    {
+        id: 3,
+        title: "Fresh Ingredients",
+        desc: "Most of the ingredients are prepared in house to match the quality commitments."
+    },
+    {
+        id: 4,
+        title: "Customized Meals",
+        desc: "You Can choose from menu and prepare your own customized meals."
+    },
+    {
+        id: 5,
+        title: "Trials & Demo",
+        desc: "Before subscribe to our plans. You can order a demo / trials to taste the quality. We are always open for your feedback."
+    },
 ]

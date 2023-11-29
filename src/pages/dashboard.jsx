@@ -19,7 +19,7 @@ const dashboard = ({ setCartCount }) => {
         name: '',
         phone: '',
         email: '',
-        address: '',
+        location: '',
         gender: '',
         img: null,
         dob: new Date()
@@ -30,7 +30,7 @@ const dashboard = ({ setCartCount }) => {
     useEffect(() => {
         authorization().then((res => {
             if (res?.status === 200) {
-                setUserData({ ...userData, name: res?.user?.name, phone: res?.user?.mobile_no, email: res?.user?.email, address: res?.user?.address, gender: res?.user?.gender, dob: new Date(res?.user?.dob), img: res?.user?.img })
+                setUserData({ ...userData, name: res?.user?.name, phone: res?.user?.mobile_no, email: res?.user?.email, location: res?.user?.location, gender: res?.user?.gender, dob: new Date(res?.user?.dob), img: res?.user?.img })
                 setCartCount(res?.user?.cart_qty)
             }
         })).catch((err) => toast.error(err))
@@ -60,7 +60,7 @@ const dashboard = ({ setCartCount }) => {
         formData.append('name', userData.name);
         formData.append('phone', userData.phone);
         formData.append('email', userData.email);
-        formData.append('address', userData.address);
+        formData.append('location', userData.location);
         formData.append('gender', userData.gender);
         formData.append('dob', moment(userData.dob, 'mm/dd/yyyy').format('l'));
         profileUpdate(formData).then((res) => {
@@ -153,7 +153,7 @@ const dashboard = ({ setCartCount }) => {
                             </div>
                             <div>
                                 <label>ADDRESS</label>
-                                <input className={styles.form_input} type='text' value={userData?.address} />
+                                <input className={styles.form_input} type='text' value={userData?.location} />
                             </div>
                         </div>
                     </div>

@@ -73,7 +73,7 @@ const ViewMeal = ({ setMealAction, mealAction, setShowmenu, showSubmenu, setComp
               return (
                 <div key={ele?._id} className={styles.meal}>
                   <div style={{ height: '25rem', display: 'flex', alignItems: 'center' }}><img src={ele?.img} alt='meal image' className={styles.category_img} /></div>
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '2rem' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '2rem', marginTop: '1rem' }}>
                     <span><IoMdRadioButtonOn className={`${ele?.food_category === "Veg" ? styles.veg_sign : ele?.food_category === "Non-Veg" && styles.nonveg_sign} ${styles.category_sign}`} /></span>
                     <p className={styles.category_name}>{ele?.title}</p>
                   </div>

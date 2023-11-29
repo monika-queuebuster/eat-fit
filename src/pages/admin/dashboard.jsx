@@ -13,6 +13,9 @@ import ViewSubscription from '../../components/ViewSubscription';
 import EditSubscription from '../../components/EditSubscription';
 import { useRouter } from 'next/router';
 import { IoMdArrowBack } from "react-icons/io";
+import MealSubscription from '../../components/MealSubscription';
+import EditTiffin from '../../components/EditTiffin';
+import ViewTiffin from '../../components/ViewTiffin';
 
 const dashboard = () => {
   const [showSubmenu, setShowmenu] = useState({
@@ -23,8 +26,8 @@ const dashboard = () => {
   const [categoryAction, setCategoryAction] = useState({ action: "", data: null })
   const [mealAction, setMealAction] = useState({ action: "", data: null })
   const [subsAction, setSubsAction] = useState({ action: "", data: null })
+  const [tiffinData, setTiffinData] = useState({ action: "", data: null });
   const [componentStack, setComponentStack] = useState([]);
-
 
   const router = useRouter();
   const adminToken = typeof window !== "undefined" && localStorage.getItem("adminToken");
@@ -34,18 +37,18 @@ const dashboard = () => {
   }, [])
 
   const goBack = () => {
-    if(componentStack.length <= 1) {
+    if (componentStack.length <= 1) {
       router.push('/admin/login');
     }
     if (componentStack.length > 0) {
-      const prevComponent = componentStack[componentStack.length-2];
+      const prevComponent = componentStack[componentStack.length - 2];
       const newArr = [...componentStack];
       newArr.splice(-2);
       setComponentStack(newArr);
-      console.log('--prev component--', componentStack, prevComponent);
       setShowmenu({ menu: prevComponent?.menu, submenu: prevComponent?.submenu });
     }
   };
+  console.log('---show menu---', showSubmenu);
 
   return (
     <div className={styles.dahboard_container}>
@@ -64,7 +67,8 @@ const dashboard = () => {
                         : ele?.item === "Food Meal" ? "Add Meal"
                           : ele?.item === "Subscription" ? "Add Subscription"
                             : ele?.item === "User" ? "Registered User"
-                              : null
+                              : ele?.item === "Tiffin" ? "Add Tiffin"
+                                : null
                     })}>
                   {ele?.item} {(showSubmenu?.active && showSubmenu?.menu === ele?.item) ? < IoIosArrowUp /> : <IoIosArrowDown />}
                 </div>
@@ -78,7 +82,7 @@ const dashboard = () => {
       </div>
       <div className={styles.form_section}>
         <span onClick={goBack} style={{ cursor: "pointer", display: 'flex', gap: '1rem', alignItems: 'center', position: 'relative', top: '2rem', left: '10rem' }}>
-        <IoMdArrowBack /> Go Back
+          <IoMdArrowBack /> Go Back
         </span>
         {
           showSubmenu?.submenu === "Add Category" ?
@@ -105,10 +109,18 @@ const dashboard = () => {
                         showSubmenu?.submenu === "Subscription List" ?
                           <ViewSubscription setShowmenu={setShowmenu} showSubmenu={showSubmenu} setSubsAction={setSubsAction} subsAction={subsAction} setComponentStack={setComponentStack} componentStack={componentStack} />
                           :
-                          showSubmenu?.submenu === "Edit Category" && showSubmenu?.menu === "Subscription" ?
+                          showSubmenu?.submenu === "Edit Subscription" && showSubmenu?.menu === "Subscription" ?
                             <EditSubscription subsData={subsAction?.data} setShowmenu={setShowmenu} showSubmenu={showSubmenu} setComponentStack={setComponentStack} componentStack={componentStack} />
-                            : null
-
+                            :
+                            showSubmenu?.submenu === "Add Tiffin" ?
+                              <MealSubscription setShowmenu={setShowmenu} showSubmenu={showSubmenu} setComponentStack={setComponentStack} componentStack={componentStack} />
+                              :
+                              showSubmenu?.submenu === "Tiffin List" ?
+                                <ViewTiffin setShowmenu={setShowmenu} showSubmenu={showSubmenu} setTiffinData={setTiffinData} tiffinData={tiffinData} setSubsAction={setSubsAction} setComponentStack={setComponentStack} componentStack={componentStack} />
+                                :
+                                showSubmenu?.submenu === "Edit Tiffin" && showSubmenu?.menu === "Tiffin" ?
+                                  <EditTiffin tiffinData={tiffinData?.data} setShowmenu={setShowmenu} showSubmenu={showSubmenu} setComponentStack={setComponentStack} componentStack={componentStack} />
+                                  : null
         }
       </div>
     </div>

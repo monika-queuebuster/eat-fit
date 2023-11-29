@@ -1,0 +1,130 @@
+.hero_section {
+  background-image: url("../../public/assets/fpic.webp");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 40rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.hero_section > h1 {
+  font-size: 6rem;
+  color: #fff;
+  padding-left: 14rem;
+}
+
+.section2, .section3 {
+  padding: 8rem 15rem;
+  display: flex;
+  gap: 7rem;
+  justify-content: space-evenly;
+}
+
+.section2_img_container {
+  width: 40%;
+}
+
+.section2_img_container > img {
+  height: 35rem;
+  width: 40rem;
+}
+
+.about_bty {
+  width: 60%;
+}
+
+.section2_heading {
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.about_bty > h3 {
+  font-size: 1.4rem;
+  letter-spacing: 0.3rem;
+  font-weight: 300;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.founder_words {
+  font-size: 1.7rem;
+  font-weight: 200;
+  line-height: 3rem;
+  text-align: justify;
+  color: #595959;
+  margin-bottom: 3rem;
+}
+
+.founder_sign {
+  margin-bottom: 3rem;
+  text-align: center;
+  font-size: 4rem;
+  font-family: "Dancing Script", cursive;
+}
+
+.designation {
+  font-size: 1.4rem;
+  text-align: center;
+}
+
+.logo {
+    height: 28rem;
+}
+
+.section3 > div {
+    width: 25%;
+}
+.features {
+    height: 15rem;
+}
+
+.section3_heading {
+    font-size: 3rem;
+    color: rgb(2, 10, 46);
+    font-weight: 200;
+    margin-bottom: 1rem;
+}
+
+.section3_para {
+    color: rgb(186, 186, 186);
+    font-size: 1.8rem;
+    font-weight: 100;
+}
+
+@media screen and (max-width: 540px) {
+    .section2 {
+        flex-direction: column-reverse;
+        padding: 3rem 5rem;
+    }
+    .section3 {
+        flex-direction: column;
+        padding: 3rem 5rem;
+        gap: 2rem;
+        align-items: center;
+    }
+    .section3 > div {
+        width: 100%;
+    }
+    .section3_para {
+        margin-bottom: 3rem;
+    }
+    .about_bty {
+        width: 100%;
+    }
+    .features {
+        height: fit-content;
+    }
+    .logo {
+        width: 30rem;
+        margin-top: 2rem;
+    }
+    .section2_img_container {
+        width: 100%;
+    }
+    .section2_img_container > img {
+        width: 100%;
+    }
+}
