@@ -466,6 +466,21 @@ export const getTiffins = () => {
   });
 };
 
+export const singleTiffinData = (slug) => {
+  return new Promise(async (resolve, reject) => {
+    updateAdminToken();
+    try {
+      const { data } = await axios.get(`/cms/tiffin/${slug}`);
+      if (data.status == 0) throw data;
+      else {
+        resolve(data);
+      }
+    } catch (data) {
+      reject(data.message);
+    }
+  });
+};
+
 export const updateTiffin = (tiffinData, slug) => {
   return new Promise(async (resolve, reject) => {
     updateAdminToken();

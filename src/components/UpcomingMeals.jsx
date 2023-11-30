@@ -8,9 +8,10 @@ const UpcomingMeals = ({ includeWeekends, data }) => {
     const totalNutrients = protein + fat + carbs + fibre;
     const protienPer = ((protein / totalNutrients) * 100), fatPer = ((fat / totalNutrients) * 100), carbsPer = ((carbs / totalNutrients) * 100), fibrePer = ((fibre / totalNutrients) * 100);
 
+    console.log('data', data)
     return (
         <div className={styles.upcoming_container}>
-            <p className={styles.note}>* Sat & Sun meals will not be delivered if deliver on weekends is off</p>
+            {/* <p className={styles.note}>* Sat & Sun meals will not be delivered if deliver on weekends is off</p> */}
             <div className={styles.meals_container}>
                 {
                     includeWeekends &&
@@ -62,7 +63,7 @@ const UpcomingMeals = ({ includeWeekends, data }) => {
                 }
             </div>
 
-            <div className={styles.meal_desc}>
+            {/* <div className={styles.meal_desc}>
                 <p className={styles.day_date}>{selectedDay.toLowerCase()}, 22 Oct</p>
                 <p className={styles.food_items}>Wild Rice Tomato Sauce Paneer Protein Meal</p>
                 <p className={styles.food_desc}>[Energy - 699Cal | Protein - 36gm]Delicious protein packed meal of soft paneer into creamy & spicy tomato sauce, healthy protein dense mix bean stew, and fresh raw veggie salad. Served along with special Wild Rice and green gram sprouts drizzled on top. Allergen information: Contains dairy, gluten, soy, traces of celery & mushroom</p>
@@ -97,7 +98,7 @@ const UpcomingMeals = ({ includeWeekends, data }) => {
                         <p className={styles.nutrient_amount}>{fibre}g</p>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </div>
     )
 }

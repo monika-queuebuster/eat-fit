@@ -263,11 +263,9 @@ export const Home = ({ quantity, setQuantity }) => {
                       <p>{ele?.title}</p>
                       <button
                         className={styles.cart_btn}
-                        onClick={() => (
-                          setSelectedItem(ele), setCartModal(true)
-                        )}
+                        onClick={() => router.push(`/purchase-order/${ele?.slug}`) }
                       >
-                        Add to cart
+                        Subscribe
                       </button>
                     </div>
                   );

@@ -30,7 +30,7 @@ const dashboard = ({ setCartCount }) => {
     useEffect(() => {
         authorization().then((res => {
             if (res?.status === 200) {
-                setUserData({ ...userData, name: res?.user?.name, phone: res?.user?.mobile_no, email: res?.user?.email, location: res?.user?.location, gender: res?.user?.gender, dob: new Date(res?.user?.dob), img: res?.user?.img })
+                setUserData({ ...userData, name: res?.user?.name, phone: res?.user?.mobile_no, email: res?.user?.email, location: res?.user?.location, gender: res?.user?.gender, dob: res?.user?.dob && new Date(res?.user?.dob), img: res?.user?.img })
                 setCartCount(res?.user?.cart_qty)
             }
         })).catch((err) => toast.error(err))
